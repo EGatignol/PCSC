@@ -15,6 +15,8 @@ class FindRoot{
 
 public:
 
+  FindRoot();
+  FindRoot(const double tol,const int maxit);
   //! Documentation TODO
   virtual ResultMethod MethodFindRoot(Function unnamed)=0;
 
