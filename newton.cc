@@ -1,8 +1,10 @@
 #include "newton.hh"
 /* -------------------------------------------------------------------------- */
 
-std:vector<double> Newton::NextX(Function unnamed, std::vector<double> unnamed, std::vector<double> unnamed){
-
+std::vector<double> NextX(Function &f, std::vector<double> previousX){
+    auto facto = f.DerivedFunc(previousX).fullPivLu();
+    std::vector<double> X = facto.solve(-f.Func(previousX));
+    return X;
 }
 
 

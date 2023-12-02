@@ -2,7 +2,9 @@
 #define __NEWTON__HH__
 
 /* -------------------------------------------------------------------------- */
+#include <vector>
 #include "fixed_point.hh"
+#include "function.hh"
 
 /**
   * Documentation TODO
@@ -17,7 +19,7 @@ class Newton: public FixedPoint{
 public:
 
   //! Documentation TODO
-  std:vector<double> NextX(Function unnamed, std::vector<double> unnamed, std::vector<double> unnamed);
+  std::vector<double> NextX(Function &func, std::vector<double> previousX);
 
 };
 
