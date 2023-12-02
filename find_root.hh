@@ -15,7 +15,6 @@ class FindRoot{
 
 public:
 
-  FindRoot();
   FindRoot(const double tol,const int maxit);
   //! Documentation TODO
   virtual ResultMethod MethodFindRoot(Function unnamed)=0;
@@ -32,7 +31,7 @@ protected:
   //!Documentation TODO
   double tolerance;
   //!Documentation TODO
-  double epsilon;
+  const double epsilon = 10e-16;
 
 };
 

@@ -2,11 +2,7 @@
 /* -------------------------------------------------------------------------- */
 
 FindRoot::FindRoot(const double tol,const int maxit){
-    MaxIter=maxit;
-    tolerance= tol;
-}
-FindRoot::FindRoot(){
-    MaxIter=1000;
-    tolerance=10e-6;
+    MaxIter = maxit;
+    tolerance = tol;
 }
 
