@@ -3,6 +3,7 @@
 
 /* -------------------------------------------------------------------------- */
 #include "fixed_point.hh"
+#include "function.hh"
 
 /**
   * Documentation TODO
@@ -17,7 +18,7 @@ class ClassicChord: public FixedPoint{
 public:
 
   //! Documentation TODO
-  std:vector<double> NextX(Function unnamed, std::vector<double> unnamed, std::vector<double> unnamed);
+  Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX);
 
 };
 

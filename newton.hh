@@ -19,7 +19,7 @@ class Newton: public FixedPoint{
 public:
 
   //! Documentation TODO
-  std::vector<double> NextX(Function &func, std::vector<double> previousX);
+  Eigen::VectorXd NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX);
 
 };
 
