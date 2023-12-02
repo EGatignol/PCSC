@@ -6,6 +6,11 @@
 /**
   * Documentation TODO
   */
+#include <iostream>
+#include <vector>
+#include <Eigen> #Comment ajouter la bibliotheque Eigen ?
+using namespace std;
+using namespace Eigen;
 
 class Function{
 
@@ -14,7 +19,8 @@ class Function{
   /* ------------------------------------------------------------------------ */
 
 public:
-
+  // Constructor:
+  Function(const int dim_F, const int dim_X);
   //! Documentation TODO
   virtual Eigen::Matrix<double, -1, 1> Func(std::vector<double> X)=0;
   //! Documentation TODO

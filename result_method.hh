@@ -6,6 +6,9 @@
 /**
   * Documentation TODO
   */
+#include <iostream>
+#include <vector>
+using namespace std;
 
 class ResultMethod{
 
@@ -15,6 +18,8 @@ class ResultMethod{
 
 public:
 
+  // Constructor:
+  ResultMethod(std::string Name_method, vector<double> x, std::vector<std::vector<double>> Value_f_by_iteration);
   //! Documentation TODO
   gnuplot GraphConvergence();
 
@@ -28,9 +33,9 @@ public:
   //!Documentation TODO
   std::string NameMethod;
   //!Documentation TODO
-  std::vector x_final;
+  std::vector<double> x_final;
   //!Documentation TODO
-  std::vector<std::vector<std::double>> fvalue;
+  std::vector<std::vector<double>> fvalue;
 
 };
 
