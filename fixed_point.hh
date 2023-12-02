@@ -15,9 +15,10 @@ class FixedPoint: public FindRoot{
   /* ------------------------------------------------------------------------ */
 
 public:
-
   //! Documentation TODO
-  virtual std:vector<double> NextX(Function unnamed, std::vector<double> unnamed, std::vector<double> unnamed);
+  FixedPoint(std::vector x,bool aitken, const double tol,const int maxit);
+  //! Documentation TODO
+  virtual Eigen::VectorXd NextX(Function unnamed, Eigen::VectorXd unnamed, Eigen::VectorXd unnamed);
   //! Documentation TODO
   ResultMethod MethodFindRoot(Function unnamed);
 
@@ -29,9 +30,10 @@ public:
 protected:
 
   //!Documentation TODO
-  std::vector<double> x_initial;
+  Eigen::VectorXd x_initial;
   //!Documentation TODO
-  Bool UseAitken;
+  bool UseAitken;
+
 
 };
 
