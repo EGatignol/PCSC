@@ -5,7 +5,7 @@ Polynomial1ToN::Polynomial1ToN(std::vector<std::vector<double>> coeffs, const in
 }
 /* -------------------------------------------------------------------------- */
 
-Eigen::Matrix<double, -1, 1> Polynomial1ToN::Func(std::vector<double> X) {
+Eigen::Matrix<double, -1, 1> Polynomial1ToN::Func(Eigen::VectorXd X) {
     Eigen::Matrix<double, dimF, 1> values_f = Eigen::Matrix<double, dimF, 1>::Zero();
     for (int f_i=0, f_i<=dimF-1, f_i++) {
         values_f[f_i][0]=0;
@@ -21,7 +21,7 @@ Eigen::Matrix<double, -1, 1> Polynomial1ToN::Func(std::vector<double> X) {
 
 /* --------------------------------------------------------------------------- */
 
-Eigen::Matrix<double, -1, -1> Polynomial1ToN::DerivedFunc(std::vector<double> X){
+Eigen::Matrix<double, -1, -1> Polynomial1ToN::DerivedFunc(Eigen::VectorXd X){
     Eigen::Matrix<double, dimF, 1> values_f = Eigen::Matrix<double, dimF, 1>::Zero();
     for (int f_i=0, f_i<=dimF-1, f_i++) {
         values_f[f_i][0]=0;

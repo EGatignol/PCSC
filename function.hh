@@ -8,7 +8,7 @@
   */
 #include <iostream>
 #include <vector>
-#include <Eigen> #Comment ajouter la bibliotheque Eigen ?
+#include <Eigen> //Comment ajouter la bibliotheque Eigen ?
 using namespace std;
 using namespace Eigen;
 
@@ -22,9 +22,9 @@ public:
   // Constructor:
   Function(const int dim_F, const int dim_X);
   //! Documentation TODO
-  virtual Eigen::Matrix<double, -1, 1> Func(std::vector<double> X)=0;
+  virtual Eigen::Matrix<double, -1, 1> Func(Eigen::VectorXd X)=0;
   //! Documentation TODO
-  virtual Eigen::Matrix<double, -1, -1> DerivedFunc(std::vector<double> X)=0;
+  virtual Eigen::Matrix<double, -1, -1> DerivedFunc(Eigen::VectorXd X)=0;
 
 
   /* ------------------------------------------------------------------------ */
