@@ -16,9 +16,9 @@ class FixedPoint: public FindRoot{
 
 public:
   //! Documentation TODO
-  FixedPoint(std::vector x,bool aitken, const double tol,const int maxit);
+  FixedPoint(Eigen::VectorXd x,bool aitken, const double tol,const int maxit);
   //! Documentation TODO
-  virtual Eigen::VectorXd NextX(Function unnamed, Eigen::VectorXd unnamed, Eigen::VectorXd unnamed);
+  virtual Eigen::VectorXd NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX);
   //! Documentation TODO
   ResultMethod MethodFindRoot(Function unnamed);
 
@@ -30,7 +30,11 @@ public:
 protected:
 
   //!Documentation TODO
+  std::string nameMethod;
+  //!Documentation TODO
   Eigen::VectorXd x_initial;
+  //!Documentation TODO
+  Eigen::VectorXd x_previous;
   //!Documentation TODO
   bool UseAitken;
 

@@ -18,6 +18,8 @@ class ClassicChord: public FixedPoint{
 public:
 
   //! Documentation TODO
+  ClassicChord(Eigen::VectorXd xprev,Eigen::VectorXd xinit, bool aitken, const double tol, const int maxit);
+  //! Documentation TODO
   Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX);
 
 };
