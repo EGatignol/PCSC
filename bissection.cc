@@ -4,7 +4,7 @@
 Bissection::Bissection(std::pair<double,double> inter_init): FindRoot(){
     Interval = inter_init;
 }
-Bissection::Bissection(std::pair<double,double> inter_init, const double tol, const int max_iter, const double epsil): FindRoot(tol, max_iter, epsil){
+Bissection::Bissection(std::pair<double,double> inter_init, const double tol, const int max_iter): FindRoot(tol, max_iter){
     Interval = inter_init;
 }
 /* -------------------------------------------------------------------------- */
