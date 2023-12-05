@@ -20,7 +20,7 @@ public:
   //! Documentation TODO
   virtual Eigen::VectorXd NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX);
   //! Documentation TODO
-  ResultMethod MethodFindRoot(Function unnamed);
+  ResultMethod MethodFindRoot(Function &f);
 
 
   /* ------------------------------------------------------------------------ */
