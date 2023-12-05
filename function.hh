@@ -22,7 +22,7 @@ public:
   // Constructor:
   Function(const int dim_F, const int dim_X);
   //! Documentation TODO
-  virtual Eigen::Matrix<double, -1, 1> Func(Eigen::VectorXd X)=0;
+  virtual Eigen::VectorXd Func(Eigen::VectorXd X)=0;
   //! Documentation TODO
   virtual Eigen::Matrix<double, -1, -1> DerivedFunc(Eigen::VectorXd X)=0;
 
