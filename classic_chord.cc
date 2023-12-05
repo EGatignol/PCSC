@@ -10,18 +10,21 @@ ClassicChord::ClassicChord(Eigen::VectorXd xprev,Eigen::VectorXd xinit, bool ait
 
 /* -------------------------------------------------------------------------- */
 
-Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX){
+Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX) {
 
-    auto chordparam = (previousX-previouspreviousX).cwiseQuotient(f.Func(previousX)-f.Func(previouspreviousX));
-
-    auto newX= previousX-chordparam.cwiseProduct(f.Func(previousX));
-
-    return newX;
+    try {
+        if (((f.Func(previousX) - f.Func(previouspreviousX)).array() > epsilon).all()) {
+            auto chordparam = (previousX - previouspreviousX).cwiseQuotient(f.Func(previousX) - f.Func(previouspreviousX));
+            auto newX= previousX-chordparam.cwiseProduct(f.Func(previousX));
+            return newX;
+        } else {
+            throw std::runtime_error("denominator is too small");
+        }
+    } catch (const std::runtime_error& e) {
+        std::cerr << e.what() << std::endl;
+        return previousX;
     }
-
 }
-
-
 
 /* --------------------------------------------------------------------------- */
 
