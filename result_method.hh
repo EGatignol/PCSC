@@ -19,7 +19,7 @@ class ResultMethod{
 public:
 
   // Constructor:
-  ResultMethod(std::string Name_method, vector<double> x, std::vector<std::vector<double>> Value_f_by_iteration);
+  ResultMethod(std::string Name_method, Eigen::Matrix<double,-1,1> x, std::vector<Eigen::VectorXd> Value_f_by_iteration);
   //! Documentation TODO
   gnuplot GraphConvergence();
 
@@ -33,9 +33,9 @@ public:
   //!Documentation TODO
   std::string NameMethod;
   //!Documentation TODO
-  std::vector<double> x_final;
+  Eigen::Matrix<double,-1,1> x_final;
   //!Documentation TODO
-  std::vector<std::vector<double>> fvalue;
+  std::vector<Eigen::VectorXd> fvalue;
 
 };
 
