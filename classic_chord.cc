@@ -2,12 +2,11 @@
 
 /* --------------------------------------------------------------------------- */
 
-ClassicChord::ClassicChord(Eigen::VectorXd xprev,Eigen::VectorXd xinit, bool aitken, const double tol, const int maxit) {
-    FindRoot(tol,maxit);
-    UseAitken=aitken;
-    x_initial=xinit;
-    x_previous = xprev;
-    nameMethod = "Fixed point using classic chord";
+ClassicChord::ClassicChord(Eigen::VectorXd xprev,Eigen::VectorXd xinit, bool aitken, const double tol, const int maxit):FixedPoint(xinit,aitken,tol,maxit)
+{
+    nameMethod= "Fixed Point using classic chord";
+    x_previous=xprev;
+}
 
 /* -------------------------------------------------------------------------- */
 

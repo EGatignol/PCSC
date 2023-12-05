@@ -32,11 +32,11 @@ ResultMethod FixedPoint::MethodFindRoot(function &f){
 
 /* --------------------------------------------------------------------------- */
 
-FixedPoint::FixedPoint(Eigen::VectorXd x, bool aitken, const double tol, const int maxit) {
-    FindRoot(tol,maxit);
+FixedPoint::FixedPoint(Eigen::VectorXd x, bool aitken, const double tol, const int maxit): FindRoot(tol, maxit)
+{
     UseAitken=aitken;
     x_initial=x;
-    nameMethod = "Fixed Point";
+    nameMethod= "Fixed Point";
 }
 
 /* --------------------------------------------------------------------------- */
