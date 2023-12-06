@@ -2,7 +2,11 @@
 #define __FIND_ROOT__HH__
 
 /* -------------------------------------------------------------------------- */
+#include <Eigen/Core>
+#include "result_method.hh"
+#include "function.hh"
 
+using namespace Eigen;
 /**
   * Documentation TODO
   */
@@ -17,7 +21,7 @@ public:
 
   FindRoot(const double tol,const int maxit);
   //! Documentation TODO
-  virtual ResultMethod MethodFindRoot(Function unnamed)=0;
+  virtual ResultMethod MethodFindRoot(Function &f)=0;
 
 
   /* ------------------------------------------------------------------------ */

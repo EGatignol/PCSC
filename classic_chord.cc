@@ -22,7 +22,7 @@ Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX, Eige
         }
     } catch (const std::runtime_error& e) {
         std::cerr << e.what() << std::endl;
-        return previousX;
+        return previouspreviousX;
     }
 }
 
