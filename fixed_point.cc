@@ -17,19 +17,20 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
     auto actualfeval=f.Func(actualX);
     auto previousfeval=f.Func(actualX);
     auto residu = (previousfeval-actualfeval).norm() + 2*tolerance;
+    auto newX = actualX;
 
     while ((residu>tolerance) && (iteration<MaxIter))
     {
         if (UseAitken)
         {
-            auto newX = Aitken(f, actualX, lastX);
+            newX = Aitken(f, actualX, lastX);
         }
         else
         {
-            auto newX = NextX(f, actualX, lastX);
+            newX = NextX(f, actualX, lastX);
         }
 
-        if (newX = previousX)
+        if (newX == lastX)
         {
             break;
         }
