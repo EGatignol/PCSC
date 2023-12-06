@@ -22,7 +22,7 @@ public:
   // Constructors:
   Bissection(std::pair<double,double> inter_init, const double tol, const int max_iter);
   //! Documentation TODO
-  ResultMethod MethodFindRoot(Function F);
+  ResultMethod MethodFindRoot(Function &F);
 
 
   /* ------------------------------------------------------------------------ */

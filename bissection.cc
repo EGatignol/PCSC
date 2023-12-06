@@ -6,7 +6,7 @@ Bissection::Bissection(std::pair<double,double> inter_init, const double tol, co
 }
 /* -------------------------------------------------------------------------- */
 
-ResultMethod Bissection::MethodFindRoot(Function F){
+ResultMethod Bissection::MethodFindRoot(Function &F){
     std::string Name = "Bissection";
 
     // Check that the function is from R to R
@@ -30,12 +30,12 @@ ResultMethod Bissection::MethodFindRoot(Function F){
     std::vector<Eigen::VectorXd> f_values;
     f_values.reserve(MaxIter);
 
-    if (f_a == 0){
+    if (f_a = 0){
         f_values.push_back(f_a);
         ResultMethod Results(Name, a, f_values);
         return Results;
     }
-    if (f_b == 0){
+    if (f_b = 0){
         f_values.push_back(f_b);
         ResultMethod Results(Name, b, f_values);
         return Results;
@@ -43,11 +43,11 @@ ResultMethod Bissection::MethodFindRoot(Function F){
 
     Eigen::VectorXd m;
     Eigen::VectorXd f_m;
-    for (int iter=0, iter<MaxIter, iter++ ){
+    for (int iter=0; iter<MaxIter; iter++ ){
         m = (a+b)/2;
         f_m = F.Func(m);
         f_values.push_back(f_m);
-        if (f_m == 0){
+        if (f_m = 0){
             ResultMethod Results(Name, m, f_values);
             return Results;
         }
