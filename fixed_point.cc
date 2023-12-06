@@ -20,7 +20,14 @@ ResultMethod FixedPoint::MethodFindRoot(function &f){
 
     while ((residu>tolerance) && (iteration<MaxIter))
     {
-        auto newX = NextX(f, actualX, lastX);
+        if (UseAitken)
+        {
+            auto newX = Aitken(f, actualX, lastX);
+        }
+        else
+        {
+            auto newX = NextX(f, actualX, lastX);
+        }
         lastX=actualX;
         actualX=newX;
         iteration++;
@@ -35,6 +42,19 @@ ResultMethod FixedPoint::MethodFindRoot(function &f){
     return Results;
 }
 
+
+/* --------------------------------------------------------------------------- */
+
+Eigen::VectorXd FixedPoint::Aitken(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX)
+{
+     auto x1 = NextX(f, previousX. previouspreviousX);
+     auto x2 = NextX(f,x1, previousX);
+
+     auto denominator = x2-2*x1+previousX;
+     Eigen::VectorXd newX = x2-((x2-x1).cwiseAbs2()).cwiseQuotient(denominator);
+
+     return newX;
+}
 
 /* --------------------------------------------------------------------------- */
 

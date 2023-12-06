@@ -21,6 +21,8 @@ public:
   virtual Eigen::VectorXd NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX);
   //! Documentation TODO
   ResultMethod MethodFindRoot(Function &f);
+  //! Documentation TODO
+  Eigen::VectorXd Aitken(Function &f, Eigen::VectorXd X, Eigen::VectorXd previouspreviousX);
 
 
   /* ------------------------------------------------------------------------ */
