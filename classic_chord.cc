@@ -11,10 +11,12 @@ ClassicChord::ClassicChord(Eigen::VectorXd xprev,Eigen::VectorXd xinit, bool ait
 /* -------------------------------------------------------------------------- */
 
 Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX) {
+    auto denominator = f.Func(previousX) - f.Func(previouspreviousX);
 
     try {
-        if (((f.Func(previousX) - f.Func(previouspreviousX)).array() > epsilon).all()) {
-            auto chordparam = (previousX - previouspreviousX).cwiseQuotient(f.Func(previousX) - f.Func(previouspreviousX));
+        if ((denominator.array() > epsilon).any()) {
+            auto indexComponent = denominator.array()> epsilon;
+            auto chordparam = indexComponent.select((previousX - previouspreviousX).cwiseQuotient(f.Func(previousX) - f.Func(previouspreviousX)),Eigen::VectorXd::Zero(previousX.size()));
             auto newX= previousX-chordparam.cwiseProduct(f.Func(previousX));
             return newX;
         } else {
@@ -22,7 +24,7 @@ Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX, Eige
         }
     } catch (const std::runtime_error& e) {
         std::cerr << e.what() << std::endl;
-        return previouspreviousX;
+        return previousX;
     }
 }
 

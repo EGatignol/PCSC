@@ -2,7 +2,7 @@
 /* -------------------------------------------------------------------------- */
 
 Eigen::VectorXd FixedPoint::NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX){
-
+    return previousX;
 }
 
 /* --------------------------------------------------------------------------- */
@@ -60,8 +60,9 @@ Eigen::VectorXd FixedPoint::Aitken(Function &f, Eigen::VectorXd previousX, Eigen
      auto denominator = x2-2*x1+previousX;
 
     try {
-        if ((denominator.array() > epsilon).all()) {
-            Eigen::VectorXd newX = x2-((x2-x1).cwiseAbs2()).cwiseQuotient(denominator);
+        if ((denominator.array() > epsilon).any()) {
+            auto indexComponent = denominator.array()> epsilon;
+            Eigen::VectorXd newX = indexComponent.select(x2-((x2-x1).cwiseAbs2()).cwiseQuotient(denominator),previousX);
             return newX;
         } else {
             throw std::runtime_error("denominator is too small");
