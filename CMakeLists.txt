@@ -1,7 +1,7 @@
 
 cmake_minimum_required (VERSION 2.6)
 project (GeneratedFromCodeGenerator)
-
+include_directories(eigen-master)
 add_executable(main
 main.cc
 result_method.cc
