@@ -60,7 +60,7 @@ Eigen::VectorXd FixedPoint::Aitken(Function &f, Eigen::VectorXd previousX, Eigen
      auto denominator = x2-2*x1+previousX;
 
     try {
-        if (denominator.array() > epsilon).all()) {
+        if ((denominator.array() > epsilon).all()) {
             Eigen::VectorXd newX = x2-((x2-x1).cwiseAbs2()).cwiseQuotient(denominator);
             return newX;
         } else {
