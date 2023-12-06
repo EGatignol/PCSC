@@ -17,7 +17,7 @@ class Polynomial1ToN: public Function{
 public:
 
   // Constructor:
-  Polynomial1ToN(std::vector<vector<double>> coeffs, const int dim_F, const int dim_X);
+  Polynomial1ToN(std::vector<vector<double>> coeffs, int dim_F, int dim_X);
   //! Documentation TODO
   Eigen::VectorXd Func(Eigen::VectorXd X);
   //! Documentation TODO

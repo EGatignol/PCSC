@@ -19,7 +19,7 @@ class Function{
 
 public:
   // Constructor:
-  Function(const int dim_F, const int dim_X);
+  Function(int dim_F, int dim_X);
   //! Documentation TODO
   virtual Eigen::VectorXd Func(Eigen::VectorXd X)=0;
   //! Documentation TODO
