@@ -8,9 +8,9 @@ ResultMethod::ResultMethod(std::string Name_method, Eigen::Matrix<double,-1,1> x
 
 /* -------------------------------------------------------------------------- */
 
-gnuplot ResultMethod::GraphConvergence(){
+//gnuplot ResultMethod::GraphConvergence(){
 
-}
+//}
 
 
 

@@ -11,7 +11,7 @@ ResultMethod Bissection::MethodFindRoot(Function F){
 
     // Check that the function is from R to R
     if (F.dimX != 1 || F.dimF != 1){
-        throw std::invalid_argument("Bissection: The function id not from R to R.") ;
+        throw std::invalid_argument("Bissection: The function is not from R to R.") ;
     }
     // Check that the interval [a,b] is s.t. a<b
     Eigen::VectorXd a,b ;
@@ -28,6 +28,7 @@ ResultMethod Bissection::MethodFindRoot(Function F){
     }
 
     std::vector<Eigen::VectorXd> f_values;
+    f_values.reserve(MaxIter);
 
     if (f_a == 0){
         f_values.push_back(f_a);

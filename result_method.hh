@@ -8,6 +8,8 @@
   */
 #include <iostream>
 #include <vector>
+#include <Eigen/Core>
+using namespace Eigen;
 using namespace std;
 
 class ResultMethod{
@@ -21,7 +23,7 @@ public:
   // Constructor:
   ResultMethod(std::string Name_method, Eigen::Matrix<double,-1,1> x, std::vector<Eigen::VectorXd> Value_f_by_iteration);
   //! Documentation TODO
-  gnuplot GraphConvergence();
+  //gnuplot GraphConvergence();
 
 
   /* ------------------------------------------------------------------------ */

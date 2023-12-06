@@ -6,9 +6,8 @@
 /**
   * Documentation TODO
   */
-#include <iostream>
 #include <vector>
-#include <Eigen> //Comment ajouter la bibliotheque Eigen ?
+#include <Eigen/Core>
 using namespace std;
 using namespace Eigen;
 
