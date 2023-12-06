@@ -5,6 +5,7 @@
 #include <Eigen/Core>
 #include "result_method.hh"
 #include "function.hh"
+#include <Eigen/Lu>
 
 using namespace Eigen;
 /**
