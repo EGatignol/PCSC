@@ -20,7 +20,7 @@ class FindRoot{
 
 public:
 
-  FindRoot(const double tol,const int maxit);
+  FindRoot(double tol,int maxit);
   //! Documentation TODO
   virtual ResultMethod MethodFindRoot(Function &f)=0;
 
