@@ -14,15 +14,15 @@ ResultMethod Bissection::MethodFindRoot(Function &F){
         throw std::invalid_argument("Bissection: The function is not from R to R.") ;
     }
     // Check that the interval [a,b] is s.t. a<b
-    Eigen::VectorXd a,b ;
+    Eigen::VectorXd a(F.dimX),b(F.dimX) ;
     a[0] = Interval.first;
     b[0] = Interval.second;
     if (a[0] >= b[0]){
         throw std::invalid_argument("Bissection: The initial interval [a,b] is invalid sinc a>=b.");
     }
     // Check that f(a)*f(b) <= 0
-    Eigen::VectorXd f_a = F.Func(a);
-    Eigen::VectorXd f_b = F.Func(b);
+    auto f_a = F.Func(a);
+    auto f_b = F.Func(b);
     if (f_a[0]*f_b[0] > 0){
         throw std::invalid_argument("Bissection: Interval need to have a value s.t f(x) < 0 and one s.t. f(x)>0.");
     }
@@ -42,8 +42,8 @@ ResultMethod Bissection::MethodFindRoot(Function &F){
         return Results;
     }
 
-    Eigen::VectorXd m;
-    Eigen::VectorXd f_m;
+    Eigen::VectorXd m(F.dimX);
+    Eigen::VectorXd f_m(F.dimF);
     for (int iter=0; iter<MaxIter; iter++ ){
         m = (a+b)/2;
         f_m = F.Func(m);
