@@ -35,10 +35,6 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
         else
         {
             newX = NextX(f, actualX, lastX);
-            for (int i = 0; i < newX.size(); ++i) {
-                std::cout << newX[i] << " ";
-                std::cout.flush();
-            }
         }
 
         if (newX == lastX)

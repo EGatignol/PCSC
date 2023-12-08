@@ -18,7 +18,6 @@ Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX, Eige
         throw std::invalid_argument("Classic chord: x dimension must be 1. If the function if Rn to Rm with only one variable per image dimension, you can use classic chord dimension per dimension.");
     }
     Eigen::VectorXd denominator = f.Func(previousX) - f.Func(previouspreviousX);
-    std:cout << std::endl;
     try {
         if ((abs(denominator.array()) > epsilon).any()) {
             auto indexComponent = abs(denominator.array())> epsilon;
