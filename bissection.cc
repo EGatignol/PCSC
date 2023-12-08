@@ -7,27 +7,27 @@ Bissection::Bissection(std::pair<double,double> inter_init, const double tol, co
 /* -------------------------------------------------------------------------- */
 
 std::string Bissection::getName(){
-    return "Bissection";
+    return "Bisection";
 }
 
 ResultMethod Bissection::MethodFindRoot(Function &F){
 
     // Check that the function is from R to R
     if (F.dimX != 1 || F.dimF != 1){
-        throw std::invalid_argument("Bissection: The function is not from R to R.") ;
+        throw std::invalid_argument("Bisection: The function is not from R to R.") ;
     }
     // Check that the interval [a,b] is s.t. a<b
     Eigen::VectorXd a(F.dimX),b(F.dimX) ;
     a[0] = Interval.first;
     b[0] = Interval.second;
     if (a[0] >= b[0]){
-        throw std::invalid_argument("Bissection: The initial interval [a,b] is invalid sinc a>=b.");
+        throw std::invalid_argument("Bisection: The initial interval [a,b] is invalid sinc a>=b.");
     }
     // Check that f(a)*f(b) <= 0
     auto f_a = F.Func(a);
     auto f_b = F.Func(b);
     if (f_a[0]*f_b[0] > 0){
-        throw std::invalid_argument("Bissection: Interval need to have a value s.t f(x) < 0 and one s.t. f(x)>0.");
+        throw std::invalid_argument("Bisection: Interval need to have a value s.t f(x) < 0 and one s.t. f(x)>0.");
     }
 
     std::vector<Eigen::VectorXd> f_values;
