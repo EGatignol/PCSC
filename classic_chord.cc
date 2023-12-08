@@ -16,9 +16,9 @@ Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX, Eige
     std:cout << std::endl;
     try {
         if ((abs(denominator.array()) > epsilon).any()) {
-            auto indexComponent = denominator.array()> epsilon;
-            auto chordparam = indexComponent.select((previousX - previouspreviousX).cwiseQuotient(f.Func(previousX) - f.Func(previouspreviousX)),Eigen::VectorXd::Zero(previousX.size()));
-            auto newX= previousX-chordparam.cwiseProduct(f.Func(previousX));
+            auto indexComponent = abs(denominator.array())> epsilon;
+            auto chordparam = indexComponent.select((previousX - previouspreviousX).cwiseQuotient(denominator),Eigen::VectorXd::Zero(previousX.size()));
+            Eigen::VectorXd newX= previousX-chordparam.cwiseProduct(f.Func(previousX));
             return newX;
         } else {
             throw std::runtime_error("denominator is too small");
