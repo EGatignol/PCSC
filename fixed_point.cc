@@ -8,7 +8,14 @@ Eigen::VectorXd FixedPoint::NextX(Function &f, Eigen::VectorXd previousX, Eigen:
 /* --------------------------------------------------------------------------- */
 
 std::string FixedPoint::getName(){
-    return "Fixed Point";
+    if (UseAitken)
+    {
+        return "Fixed Point combined with Aitken";
+    }
+    else
+    {
+        return "Fixed Point";
+    }
 }
 
 /* --------------------------------------------------------------------------- */

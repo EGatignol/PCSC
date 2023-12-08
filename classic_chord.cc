@@ -9,18 +9,25 @@ ClassicChord::ClassicChord(Eigen::VectorXd xprev,Eigen::VectorXd xinit, bool ait
 
 /* -------------------------------------------------------------------------- */
 std::string ClassicChord::getName() {
-    return "Fixed point using classic chord";
+    if (UseAitken)
+    {
+        return "Fixed point using classic chord combined with Aitken";
+    }
+    else
+    {
+        return "Fixed point using classic chord";
+    }
 }
 /* -------------------------------------------------------------------------- */
 
 Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX) {
-    if (f.dimX != 1){
-        throw std::invalid_argument("Classic chord: x dimension must be 1. If the function if Rn to Rm with only one variable per image dimension, you can use classic chord dimension per dimension.");
+    if (f.dimX != 1 || f.dimF!=1 ){
+        throw std::invalid_argument("Classic chord: dimension of input and function must be equal to 1.");
     }
     Eigen::VectorXd denominator = f.Func(previousX) - f.Func(previouspreviousX);
     try {
         if ((abs(denominator.array()) > epsilon).any()) {
-            auto indexComponent = abs(denominator.array())> epsilon;
+            auto indexComponent = abs(denominator.array()) > epsilon;
             auto chordparam = indexComponent.select((previousX - previouspreviousX).cwiseQuotient(denominator),Eigen::VectorXd::Zero(previousX.size()));
             Eigen::VectorXd newX= previousX-chordparam.cwiseProduct(f.Func(previousX));
             return newX;
