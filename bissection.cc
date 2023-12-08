@@ -6,8 +6,11 @@ Bissection::Bissection(std::pair<double,double> inter_init, const double tol, co
 }
 /* -------------------------------------------------------------------------- */
 
+std::string Bissection::getName(){
+    return "Bissection";
+}
+
 ResultMethod Bissection::MethodFindRoot(Function &F){
-    std::string Name = "Bissection";
 
     // Check that the function is from R to R
     if (F.dimX != 1 || F.dimF != 1){
@@ -33,12 +36,12 @@ ResultMethod Bissection::MethodFindRoot(Function &F){
     auto VectZero = Eigen::VectorXd::Zero(f_a.size());
     if (f_a == VectZero){
         f_values.push_back(f_a);
-        ResultMethod Results(Name, a, f_values);
+        ResultMethod Results(getName(), a, f_values);
         return Results;
     }
     if (f_b == VectZero){
         f_values.push_back(f_b);
-        ResultMethod Results(Name, b, f_values);
+        ResultMethod Results(getName(), b, f_values);
         return Results;
     }
 
@@ -49,7 +52,7 @@ ResultMethod Bissection::MethodFindRoot(Function &F){
         f_m = F.Func(m);
         f_values.push_back(f_m);
         if (f_m == VectZero){
-            ResultMethod Results(Name, m, f_values);
+            ResultMethod Results(getName(), m, f_values);
             return Results;
         }
         if (f_a[0]*f_m[0] < 0){
@@ -59,11 +62,11 @@ ResultMethod Bissection::MethodFindRoot(Function &F){
             a = m;
         }
         if (abs(a[0]-b[0]) < tolerance){
-            ResultMethod Results(Name, m, f_values);
+            ResultMethod Results(getName(), m, f_values);
             return Results;
         }
     }
-    ResultMethod Results(Name, m, f_values);
+    ResultMethod Results(getName(), m, f_values);
     return Results;
 }
 

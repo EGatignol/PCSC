@@ -24,6 +24,10 @@ public:
   //! Documentation TODO
   virtual ResultMethod MethodFindRoot(Function &f)=0;
 
+protected:
+
+  //!Documentation TODO
+  virtual std::string getName()=0;
 
   /* ------------------------------------------------------------------------ */
   /* Members                                                                  */

@@ -24,6 +24,10 @@ public:
   //! Documentation TODO
   ResultMethod MethodFindRoot(Function &F);
 
+protected:
+
+  //!Documentation TODO
+  std::string getName();
 
   /* ------------------------------------------------------------------------ */
   /* Members                                                                  */
