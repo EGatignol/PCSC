@@ -1,6 +1,9 @@
 #include "polynomial_1_to_n.hh"
 
 Polynomial1ToN::Polynomial1ToN(std::vector<vector<double>> coeffs, int dim_F, int dim_X): Function(dim_F,dim_X){
+    if ((dim_X != 1) || (coeffs.size() != dim_F)){
+        throw std::invalid_argument("Error in construction of Polynomial1ToN because dimension (dim_F or/and dim_X) isn't correct");
+    }
     coefficients = coeffs;
 }
 /* -------------------------------------------------------------------------- */
