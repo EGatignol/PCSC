@@ -21,6 +21,7 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
 
     while ((residu>tolerance) && (iteration<MaxIter))
     {
+
         if (UseAitken)
         {
             newX = Aitken(f, actualX, lastX);
@@ -28,6 +29,10 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
         else
         {
             newX = NextX(f, actualX, lastX);
+            for (int i = 0; i < newX.size(); ++i) {
+                std::cout << newX[i] << " ";
+                std::cout.flush();
+            }
         }
 
         if (newX == lastX)
@@ -38,7 +43,6 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
         lastX=actualX;
         actualX=newX;
         iteration++;
-
         previousfeval=actualfeval;
         actualfeval=f.Func(actualX);
         residu=(previousfeval-actualfeval).norm();
@@ -57,10 +61,10 @@ Eigen::VectorXd FixedPoint::Aitken(Function &f, Eigen::VectorXd previousX, Eigen
      auto x1 = NextX(f, previousX, previouspreviousX);
      auto x2 = NextX(f,x1, previousX);
 
-     auto denominator = x2-2*x1+previousX;
+     Eigen::VectorXd denominator = x2-2*x1+previousX;
 
     try {
-        if ((denominator.array() > epsilon).any()) {
+        if ((abs(denominator.array()) > epsilon).any()) {
             auto indexComponent = denominator.array()> epsilon;
             Eigen::VectorXd newX = indexComponent.select(x2-((x2-x1).cwiseAbs2()).cwiseQuotient(denominator),previousX);
             return newX;
@@ -80,6 +84,7 @@ FixedPoint::FixedPoint(Eigen::VectorXd x, bool aitken, const double tol, const i
 {
     UseAitken=aitken;
     x_initial=x;
+    x_previous = x;
     nameMethod= "Fixed Point";
 }
 

@@ -11,10 +11,11 @@ ClassicChord::ClassicChord(Eigen::VectorXd xprev,Eigen::VectorXd xinit, bool ait
 /* -------------------------------------------------------------------------- */
 
 Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX) {
-    auto denominator = f.Func(previousX) - f.Func(previouspreviousX);
+    Eigen::VectorXd denominator = f.Func(previousX) - f.Func(previouspreviousX);
 
+    std:cout << std::endl;
     try {
-        if ((denominator.array() > epsilon).any()) {
+        if ((abs(denominator.array()) > epsilon).any()) {
             auto indexComponent = denominator.array()> epsilon;
             auto chordparam = indexComponent.select((previousX - previouspreviousX).cwiseQuotient(f.Func(previousX) - f.Func(previouspreviousX)),Eigen::VectorXd::Zero(previousX.size()));
             auto newX= previousX-chordparam.cwiseProduct(f.Func(previousX));
