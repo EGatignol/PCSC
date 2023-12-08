@@ -32,13 +32,13 @@ public:
 protected:
 
   //!Documentation TODO
-  std::string nameMethod;
-  //!Documentation TODO
   Eigen::VectorXd x_initial;
   //!Documentation TODO
   Eigen::VectorXd x_previous;
   //!Documentation TODO
   bool UseAitken;
+  //!Documentation TODO
+  virtual std::string getName();
 
 
 };

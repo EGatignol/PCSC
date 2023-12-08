@@ -22,7 +22,9 @@ public:
   Newton(Eigen::VectorXd x,bool aitken, const double tol,const int maxit);
   //! Documentation TODO
   Eigen::VectorXd NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX);
-
+protected:
+  //! Documentation TODO
+  std::string getName() override;
 
 };
 

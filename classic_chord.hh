@@ -22,7 +22,11 @@ public:
   //! Documentation TODO
   Eigen::VectorXd NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX);
 
+protected :
+  //! Documentation TODO
+  std::string getName() override;
 };
+
 
 /* -------------------------------------------------------------------------- */
 #endif //__CLASSIC_CHORD__HH__

@@ -2,9 +2,12 @@
 /* --------------------------------------------------------------------------- */
 
 Newton::Newton(Eigen::VectorXd x, bool aitken, const double tol, const int maxit): FixedPoint(x,aitken,tol,maxit)
-{
-    nameMethod= "Fixed Point using Newton method";
-}
+{}
+/* --------------------------------------------------------------------------- */
+
+std::string Newton::getName() {
+    return "Fixed point using Newton Method";
+};
 
 /* --------------------------------------------------------------------------- */
 

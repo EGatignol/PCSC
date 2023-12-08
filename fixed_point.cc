@@ -7,6 +7,12 @@ Eigen::VectorXd FixedPoint::NextX(Function &f, Eigen::VectorXd previousX, Eigen:
 
 /* --------------------------------------------------------------------------- */
 
+std::string FixedPoint::getName(){
+    return "Fixed Point";
+}
+
+/* --------------------------------------------------------------------------- */
+
 ResultMethod FixedPoint::MethodFindRoot(Function &f){
 
     int iteration=0;
@@ -49,6 +55,7 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
 
         feval.push_back(actualfeval);
     };
+    std::string nameMethod = getName();
     ResultMethod Results(nameMethod, actualX, feval);
     return Results;
 }
@@ -85,7 +92,6 @@ FixedPoint::FixedPoint(Eigen::VectorXd x, bool aitken, const double tol, const i
     UseAitken=aitken;
     x_initial=x;
     x_previous = x;
-    nameMethod= "Fixed Point";
 }
 
 /* --------------------------------------------------------------------------- */

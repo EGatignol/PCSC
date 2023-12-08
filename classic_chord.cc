@@ -4,15 +4,20 @@
 
 ClassicChord::ClassicChord(Eigen::VectorXd xprev,Eigen::VectorXd xinit, bool aitken, const double tol, const int maxit):FixedPoint(xinit,aitken,tol,maxit)
 {
-    nameMethod= "Fixed Point using classic chord";
     x_previous=xprev;
 }
 
 /* -------------------------------------------------------------------------- */
+std::string ClassicChord::getName() {
+    return "Fixed point using classic chord";
+}
+/* -------------------------------------------------------------------------- */
 
 Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX) {
+    if (f.dimX != 1){
+        throw std::invalid_argument("Classic chord: x dimension must be 1. If the function if Rn to Rm with only one variable per image dimension, you can use classic chord dimension per dimension.");
+    }
     Eigen::VectorXd denominator = f.Func(previousX) - f.Func(previouspreviousX);
-
     std:cout << std::endl;
     try {
         if ((abs(denominator.array()) > epsilon).any()) {
