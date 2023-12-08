@@ -65,7 +65,7 @@ Eigen::VectorXd FixedPoint::Aitken(Function &f, Eigen::VectorXd previousX, Eigen
 
     try {
         if ((abs(denominator.array()) > epsilon).any()) {
-            auto indexComponent = denominator.array()> epsilon;
+            auto indexComponent = abs(denominator.array())> epsilon;
             Eigen::VectorXd newX = indexComponent.select(x2-((x2-x1).cwiseAbs2()).cwiseQuotient(denominator),previousX);
             return newX;
         } else {
