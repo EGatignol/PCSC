@@ -4,7 +4,7 @@
 /* -------------------------------------------------------------------------- */
 
 /**
-  * Documentation TODO
+  * Class Function to create a function.
   */
 #include <vector>
 #include <Eigen/Core>
@@ -20,9 +20,9 @@ class Function{
 public:
   // Constructor:
   Function(int dim_F, int dim_X);
-  //! Documentation TODO
+  //! Pure virtual function to evaluate the function in x.
   virtual Eigen::VectorXd Func(Eigen::VectorXd X)=0;
-  //! Documentation TODO
+  //! Pure virtual function to evaluate the derivative of the function in x.
   virtual Eigen::Matrix<double, -1, -1> DerivedFunc(Eigen::VectorXd X)=0;
 
 
@@ -32,9 +32,9 @@ public:
 
 public:
 
-  //!Documentation TODO
+  //! The dimension of X
   int dimX;
-  //!Documentation TODO
+  //! The dimension of F(X)
   int dimF;
 
 };

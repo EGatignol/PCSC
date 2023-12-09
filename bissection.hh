@@ -8,7 +8,8 @@
 using namespace std;
 
 /**
-  * Documentation TODO
+  * FindRoot daughter class. This class use the bisection method to
+  * find a root for a function f from R to R.
   */
 
 class Bissection: public FindRoot{
@@ -19,14 +20,15 @@ class Bissection: public FindRoot{
 
 public:
 
-  // Constructors:
-  Bissection(std::pair<double,double> inter_init, const double tol, const int max_iter);
-  //! Documentation TODO
+  //! Constructors:
+  Bissection(std::pair<double,double> inter_init, double tol, int max_iter);
+  //! Method coming from FindRoot that applies the bisection
+  //! method to find a root for the Function F. Returns a ResultMethod object.
   ResultMethod MethodFindRoot(Function &F);
 
 protected:
 
-  //!Documentation TODO
+  //! Method coming from FindRoot, that give the name of the function, here "bisection".
   std::string getName();
 
   /* ------------------------------------------------------------------------ */
@@ -35,7 +37,7 @@ protected:
 
 private:
 
-  //!Documentation TODO
+  //! Initial Interval for the bisection. Must be such that f(a)*f(b)<0.
   std::pair<double,double> Interval;
 
 };

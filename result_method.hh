@@ -32,11 +32,11 @@ public:
 
 public:
 
-  //!Documentation TODO
+  //! Name of the method used to get the results
   std::string NameMethod;
-  //!Documentation TODO
+  //! The value of x at the end of the iterations
   Eigen::Matrix<double,-1,1> x_final;
-  //!Documentation TODO
+  //! The value of the function during the iterations
   std::vector<Eigen::VectorXd> fvalue;
 
 };

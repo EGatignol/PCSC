@@ -5,7 +5,7 @@
 #include "function.hh"
 
 /**
-  * Documentation TODO
+  * Function daughter class. This class is to create polynomial functions from R to R^N.
   */
 
 class Polynomial1ToN: public Function{
@@ -18,9 +18,9 @@ public:
 
   // Constructor:
   Polynomial1ToN(std::vector<vector<double>> coeffs, int dim_F, int dim_X);
-  //! Documentation TODO
+  //! Method coming from Function to evaluate the function in x.
   Eigen::VectorXd Func(Eigen::VectorXd X);
-  //! Documentation TODO
+  //! Method coming from Function to evaluate the derivative function in x;
   Eigen::Matrix<double, -1, -1> DerivedFunc(Eigen::VectorXd X);
 
 
@@ -30,7 +30,8 @@ public:
 
 private:
 
-  //!Documentation TODO
+  //! Coefficients of the function s.t. if f_i(x) = sum(a_{i,k}*x^k)
+  //! then coefficients[i][k] = a_{i,k}.
   std::vector<vector<double>> coefficients;
 
 };

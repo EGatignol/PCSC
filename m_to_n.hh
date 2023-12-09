@@ -5,7 +5,8 @@
 #include "function.hh"
 
 /**
-  * Documentation TODO
+  * Function daughter class. This class is to implement functions from R^M ti R^N.
+  * Actually incomplete.
   */
 
 class MToN: public Function{
