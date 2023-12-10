@@ -46,7 +46,9 @@ Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX) {
         // In order to not stop completely the algo (because we may have already computed few steps)
         // the error is printed and we return the initial approx of the root
         // this return allow us to break the while in MethodsFindRoot (look at the method above)
-        std::cerr << e.what() << std::endl;
+        if (!UseAitken) {
+            std::cerr << e.what() << std::endl;
+        }
         x_previous=previousX;
         return previousX;
     }
