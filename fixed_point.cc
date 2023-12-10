@@ -83,38 +83,48 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
 
 Eigen::VectorXd FixedPoint::Aitken(Function &f, Eigen::VectorXd previousX)
 {
-     // Apply Aitken method :
-     // computation of 2 consecutive step
-     auto x1 = NextX(f, previousX);
-     auto x2 = NextX(f,x1);
+    auto currentX=previousX;
+    auto newX=previousX;
+    auto residu = 2*tolerance;
+    int iter=0;
+
+    // Apply Aitken method :
+    while ((residu>tolerance) && (iter<10))
+    {
+        // computation of 2 consecutive step
+        auto x1 = NextX(f, currentX);
+        auto x2 = NextX(f,x1);
 
 
-     Eigen::VectorXd denominator = x2-2*x1+previousX;
-     // use an exception to control the value of each denominator
-    try {
-        if ((abs(denominator.array()) > epsilon).any()) {
-            // compute a vector containing True/False for each component of the vector
-            // - True : the value is greater than epsilon (in absolute)
-            // - False : the value is lower than epsilon (in absolute)
-            auto indexComponent = abs(denominator.array())> epsilon;
+        Eigen::VectorXd denominator = x2-2*x1+currentX;
+        // use an exception to control the value of each denominator
+        try {
+            if ((abs(denominator.array()) > epsilon).any()) {
+                // compute a vector containing True/False for each component of the vector
+                // - True : the value is greater than epsilon (in absolute)
+                // - False : the value is lower than epsilon (in absolute)
+                auto indexComponent = abs(denominator.array())> epsilon;
 
-            // Performs the Aitken iteration for the True components of "indexComponent"
-            // For the False components, we keep the initial value of the vector.
-            Eigen::VectorXd newX = indexComponent.select(x2-((x2-x1).cwiseAbs2()).cwiseQuotient(denominator),previousX);
-            return newX;
-        } else {
-            // throw an error if all the component are lower than epsilon
-            throw std::runtime_error("denominator is too small");
+                // Performs the Aitken iteration for the True components of "indexComponent"
+                // For the False components, we keep the initial value of the vector.
+                newX = indexComponent.select(x2-((x2-x1).cwiseAbs2()).cwiseQuotient(denominator),currentX);
+            } else {
+                // throw an error if all the component are lower than epsilon
+                throw std::runtime_error("denominator is too small");
+            }
+        } catch (const std::runtime_error& e) {
+
+            // In order to not stop completely the algo (because we may have already computed few steps)
+            // the error is printed and we return the initial approx of the root
+            // this return allow us to break the while in MethodsFindRoot (look at the method above)
+            std::cerr << e.what() << std::endl;
+            return currentX;
         }
-    } catch (const std::runtime_error& e) {
-
-        // In order to not stop completely the algo (because we may have already computed few steps)
-        // the error is printed and we return the initial approx of the root
-        // this return allow us to break the while in MethodsFindRoot (look at the method above)
-        std::cerr << e.what() << std::endl;
-        return previousX;
+        // update of residu and number of iteration
+        iter++;
+        residu=(f.Func(currentX)-f.Func(newX)).norm();
     }
-
+    return newX;
 }
 
 /* --------------------------------------------------------------------------- */
