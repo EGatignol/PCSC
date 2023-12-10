@@ -20,8 +20,8 @@ std::string Newton::getName() {
 
 Eigen::VectorXd Newton::NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX){
     auto facto = f.DerivedFunc(previousX).fullPivLu();
-    if (!facto.isInvertible()) {
-        throw std::runtime_error("Singular matrix");
+    if (facto.rows()!= f.Func(previousX).size()) {
+        throw std::runtime_error("Dimensional problem for solving the linear system");
     }
     Eigen::VectorXd dX = facto.solve(-f.Func(previousX));
     Eigen::VectorXd newX = previousX + dX;
