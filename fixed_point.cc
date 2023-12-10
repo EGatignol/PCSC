@@ -1,7 +1,8 @@
 #include "fixed_point.hh"
 /* -------------------------------------------------------------------------- */
 
-Eigen::VectorXd FixedPoint::NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX){
+Eigen::VectorXd FixedPoint::NextX(Function &f, Eigen::VectorXd previousX){
+    //auto nextX=FuncFixedPoint(previousX);
     return previousX;
 }
 
@@ -25,7 +26,7 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
     //Initialization of the variables
     int iteration=0;
     Eigen::VectorXd actualX = x_initial;
-    Eigen::VectorXd lastX = x_previous;
+    Eigen::VectorXd lastX = x_initial;
 
     std::vector<Eigen::VectorXd> feval; // vector containing the evaluation of the function at each step
     feval.reserve(MaxIter); //reserve space for it
@@ -44,11 +45,11 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
 
         if (UseAitken)
         {
-            newX = Aitken(f, actualX, lastX);
+            newX = Aitken(f, actualX) ;
         }
         else
         {
-            newX = NextX(f, actualX, lastX);
+            newX = NextX(f, actualX);
         }
         // check if the iterative process improves the quality of the solution.
         // in some cases, for example when the denominator is too small, and so the division is not feasible,
@@ -80,12 +81,12 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
 
 /* --------------------------------------------------------------------------- */
 
-Eigen::VectorXd FixedPoint::Aitken(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX)
+Eigen::VectorXd FixedPoint::Aitken(Function &f, Eigen::VectorXd previousX)
 {
      // Apply Aitken method :
      // computation of 2 consecutive step
-     auto x1 = NextX(f, previousX, previouspreviousX);
-     auto x2 = NextX(f,x1, previousX);
+     auto x1 = NextX(f, previousX);
+     auto x2 = NextX(f,x1);
 
 
      Eigen::VectorXd denominator = x2-2*x1+previousX;
@@ -122,7 +123,6 @@ FixedPoint::FixedPoint(Eigen::VectorXd x, bool aitken, const double tol, const i
 {
     UseAitken=aitken;
     x_initial=x;
-    x_previous = x;
 }
 
 /* --------------------------------------------------------------------------- */

@@ -24,11 +24,11 @@ public:
    *
    * This methods performs one step of the iterative fixed-point method
    */
-  virtual Eigen::VectorXd NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX);
+  virtual Eigen::VectorXd NextX(Function &f, Eigen::VectorXd previousX);
   //! Comes from the base class and is overridden to be suitable for the fixed point case.
   ResultMethod MethodFindRoot(Function &f);
   //! Performs Aitken between each fixed-point stage.
-  Eigen::VectorXd Aitken(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX);
+  Eigen::VectorXd Aitken(Function &f, Eigen::VectorXd previousX);
 
 
   /* ------------------------------------------------------------------------ */
@@ -39,8 +39,6 @@ protected:
 
   //! Initial value of the root approximation
   Eigen::VectorXd x_initial;
-  //! Last value of the root approximation
-  Eigen::VectorXd x_previous;
   //! Boolean that decides if Aitken is used
   bool UseAitken;
   //! From the base class, give access to the name of the method

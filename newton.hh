@@ -22,7 +22,7 @@ public:
   Newton(Eigen::VectorXd x,bool aitken, const double tol,const int maxit);
   //! From FixedPoint, is overridden to be applied in the specific case of Newton iterative method
   //! Computes one step of the iterative method
-  Eigen::VectorXd NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX);
+  Eigen::VectorXd NextX(Function &f, Eigen::VectorXd previousX);
 protected:
   //! From the base class, give access to the name of the method
   std::string getName() override;

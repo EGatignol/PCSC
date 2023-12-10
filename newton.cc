@@ -19,7 +19,7 @@ std::string Newton::getName() {
 
 /* --------------------------------------------------------------------------- */
 
-Eigen::VectorXd Newton::NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX){
+Eigen::VectorXd Newton::NextX(Function &f, Eigen::VectorXd previousX){
     // Compute LU decomposition of the Jacobian Matrix
     auto facto = f.DerivedFunc(previousX).fullPivLu();
     // check the dimension before the linear system is solved
