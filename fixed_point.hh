@@ -4,8 +4,7 @@
 /* -------------------------------------------------------------------------- */
 #include "find_root.hh"
 
-/**
-  * Documentation TODO
+/** \brief FixedPoint is derived from FindRoot (public). This class covers the general fixed-point methods. Daughter classes will be derived from this class to manage special fixed-point cases.
   */
 
 class FixedPoint: public FindRoot{
@@ -15,14 +14,21 @@ class FixedPoint: public FindRoot{
   /* ------------------------------------------------------------------------ */
 
 public:
-  //! Documentation TODO
+  //! Constructor
   FixedPoint(Eigen::VectorXd x,bool aitken, const double tol,const int maxit);
-  //! Documentation TODO
+  /*!
+   * @param f class function containing the evaluation of the function and its derivative.
+   * @param previousX the starting approximation of the root.
+   * @param previouspreviousX the previous starting approximation of the root.
+   * @return a new approximation of the root
+   *
+   * This methods performs one step of the iterative fixed-point method
+   */
   virtual Eigen::VectorXd NextX(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX);
-  //! Documentation TODO
+  //! Comes from the base class and is overridden to be suitable for the fixed point case.
   ResultMethod MethodFindRoot(Function &f);
-  //! Documentation TODO
-  Eigen::VectorXd Aitken(Function &f, Eigen::VectorXd X, Eigen::VectorXd previouspreviousX);
+  //! Performs Aitken between each fixed-point stage.
+  Eigen::VectorXd Aitken(Function &f, Eigen::VectorXd previousX, Eigen::VectorXd previouspreviousX);
 
 
   /* ------------------------------------------------------------------------ */
@@ -31,13 +37,13 @@ public:
 
 protected:
 
-  //!Documentation TODO
+  //! Initial value of the root approximation
   Eigen::VectorXd x_initial;
-  //!Documentation TODO
+  //! Last value of the root approximation
   Eigen::VectorXd x_previous;
-  //!Documentation TODO
+  //! Boolean that decides if Aitken is used
   bool UseAitken;
-  //!Documentation TODO
+  //! From the base class, give access to the name of the method
   virtual std::string getName();
 
 

@@ -6,10 +6,9 @@
 #include "result_method.hh"
 #include "function.hh"
 #include <Eigen/Lu>
-
 using namespace Eigen;
-/**
-  * Documentation TODO
+
+/** \brief FindRoot is the base class for all methods used to calculate the root of a function
   */
 
 class FindRoot{
@@ -20,13 +19,18 @@ class FindRoot{
 
 public:
 
+  //! Constructor, allows setting the tolerance and the maximum number of iterations
   FindRoot(double tol,int maxit);
-  //! Documentation TODO
+  /*!
+   * @param f a reference to the Function class
+   * @return a ResultMethod object
+   MethodFindRoot is declared pure virtual and is overridden for each method used.
+   */
   virtual ResultMethod MethodFindRoot(Function &f)=0;
 
 protected:
 
-  //!Documentation TODO
+  //! Give access to the name of the method used. is pure virtual in this class and is defined for each iterative method.
   virtual std::string getName()=0;
 
   /* ------------------------------------------------------------------------ */
@@ -35,11 +39,11 @@ protected:
 
 protected:
 
-  //!Documentation TODO
+  //! Maximum number of iterations
   int MaxIter;
-  //!Documentation TODO
+  //! Accepted error to the root approximation
   double tolerance;
-  //!Documentation TODO
+  //! Minimum value for the denominator
   const double epsilon = 10e-16;
 
 };
