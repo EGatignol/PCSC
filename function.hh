@@ -24,6 +24,8 @@ public:
   virtual Eigen::VectorXd Func(Eigen::VectorXd X)=0;
   //! Pure virtual function to evaluate the derivative of the function in x.
   virtual Eigen::Matrix<double, -1, -1> DerivedFunc(Eigen::VectorXd X)=0;
+  //!
+  virtual Eigen::VectorXd FuncFixedPoint(Eigen::VectorXd X)=0;
 
 
   /* ------------------------------------------------------------------------ */

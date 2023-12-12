@@ -1,5 +1,5 @@
 #include "PlotConvergence.h"
-#include "gnuplot-iostream/gnuplot-iostream.h"
+#include "gnuplot-iostream.h"
 
 void PlotConvergence::getGraphConv(){
     std::vector <double> vnorm;

@@ -2,8 +2,14 @@
 /* -------------------------------------------------------------------------- */
 
 Eigen::VectorXd FixedPoint::NextX(Function &f, Eigen::VectorXd previousX){
-    //auto nextX=FuncFixedPoint(previousX);
-    return previousX;
+    Eigen::VectorXd nextX=previousX;
+    try {
+        nextX=f.FuncFixedPoint(previousX);
+    }catch (const std::invalid_argument& e){
+        std::cerr << e.what() << std::endl;
+        return nextX;
+    }
+    return nextX;
 }
 
 /* --------------------------------------------------------------------------- */
@@ -23,6 +29,11 @@ std::string FixedPoint::getName(){
 /* --------------------------------------------------------------------------- */
 
 ResultMethod FixedPoint::MethodFindRoot(Function &f){
+
+    if (f.dimX!=x_initial.size()){
+        throw std::invalid_argument("x initial and function don't have the same dimension");
+    }
+
     //Initialization of the variables
     int iteration=0;
     Eigen::VectorXd actualX = x_initial;
@@ -31,8 +42,11 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
     std::vector<Eigen::VectorXd> feval; // vector containing the evaluation of the function at each step
     feval.reserve(MaxIter); //reserve space for it
 
+
     auto actualfeval=f.Func(actualX);
     auto previousfeval=f.Func(actualX);
+
+    feval.push_back(actualfeval);
 
     auto residu = 2*tolerance; // set initial residu in order to satisfy while condition
     auto newX = actualX;
@@ -50,6 +64,7 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
         else
         {
             newX = NextX(f, actualX);
+            std::cout<<"test"<<std::endl;
         }
         // check if the iterative process improves the quality of the solution.
         // in some cases, for example when the denominator is too small, and so the division is not feasible,

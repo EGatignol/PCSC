@@ -1,4 +1,5 @@
 #include "polynomial_1_to_n.hh"
+#include <iostream>
 
 Polynomial1ToN::Polynomial1ToN(std::vector<vector<double>> coeffs, int dim_F, int dim_X): Function(dim_F,dim_X){
     // Check that the dimensions are consistent.
@@ -42,4 +43,22 @@ Eigen::Matrix<double, -1, -1> Polynomial1ToN::DerivedFunc(Eigen::VectorXd X){
 
 /* --------------------------------------------------------------------------- */
 
-
+Eigen::VectorXd Polynomial1ToN::FuncFixedPoint(Eigen::VectorXd X){
+    Eigen::VectorXd values_f(dimF);
+    for (int i=0; i<=dimF-1;i++){
+        if (coefficients[i][1]==0){
+            throw std::invalid_argument("No function for fixed point found");
+        }
+        else {
+            values_f[i] = 0;
+            int max_pow_fi = coefficients[i].size();
+            for (int pow_i = 0; pow_i <= max_pow_fi - 1; pow_i++) {
+                if (pow_i != 1) {
+                    values_f[i] = values_f[i] + coefficients[i][pow_i] * pow(X[0], pow_i);
+                }
+            }
+            values_f[i] = values_f[i] / (-coefficients[i][1]);
+        }
+    }
+    return values_f;
+}

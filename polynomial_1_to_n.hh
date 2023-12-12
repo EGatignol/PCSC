@@ -22,6 +22,8 @@ public:
   Eigen::VectorXd Func(Eigen::VectorXd X);
   //! Method coming from Function to evaluate the derivative function in x;
   Eigen::Matrix<double, -1, -1> DerivedFunc(Eigen::VectorXd X);
+  //!
+  Eigen::VectorXd FuncFixedPoint(Eigen::VectorXd X);
 
 
   /* ------------------------------------------------------------------------ */

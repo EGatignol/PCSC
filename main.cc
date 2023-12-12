@@ -16,9 +16,9 @@ int main(int argc, char ** argv){
 
 // Define some functions
     // first example (R to R): F1(x) = x²-1
-    std::vector<vector<double>> coeffs_F1 = {{-1, 0, 1}};
+    std::vector<vector<double>> coeffs_F1 = {{-1, 7, 1}};
     Polynomial1ToN F1(coeffs_F1, 1, 1);
-    // second example (R to R³): F2(x): f1(x)=3x³+2, f2(x)=x⁴-(1/2)x²
+    // second example (R to R²): F2(x): f1(x)=3x³+2, f2(x)=x⁴-(1/2)x²
     std::vector<vector<double>> coeffs_F2 = {{2, 0, 0, 3},{0,0,-0.5,0,1}};
     Polynomial1ToN F2(coeffs_F2, 2, 1);
 
@@ -37,28 +37,32 @@ int main(int argc, char ** argv){
     Bissection Bisection_F1( Inter_init_F1, 10e-10, 100);
     // Newton without Aitken:
     Newton Newton_F1(X_initial_F1, false, 10e-10,100);
+    //
+    FixedPoint FixedPoint_F1(X_initial_F1, false, 10e-10,100);
 
 // Methods to find roots for F2
     // x initial
     Eigen::VectorXd X_initial_F2(1);
-    X_initial_F2 << 15.3;
+    X_initial_F2 << -8.3;
     // Newton without Aitken:
     Newton Newton_F2(X_initial_F2, false, 10e-10,100);
     // Newton with Aitken:
     Newton Newton_Aitken_F2(X_initial_F2, true, 10e-10,100);
 
 // Results of the methods for F1
-    ResultMethod Results_ClassicChord_F1 = ClassicChord_F1.MethodFindRoot(F1);
-    ResultMethod Results_Bisection_F1 = Bisection_F1.MethodFindRoot(F1);
-    ResultMethod Results_Newton_F1 = Newton_F1.MethodFindRoot(F1);
-    std::cout << " F1: " << Results_ClassicChord_F1.NameMethod <<": X_final = " << Results_ClassicChord_F1.x_final << ", F1(X_final) = " << Results_ClassicChord_F1.fvalue[Results_ClassicChord_F1.fvalue.size()-1] << std::endl;
-    std::cout << " F1: " << Results_Bisection_F1.NameMethod <<": X_final = " << Results_Bisection_F1.x_final << ", F1(X_final) = " << Results_Bisection_F1.fvalue[Results_Bisection_F1.fvalue.size()-1] << std::endl;
-    std::cout << " F1: " << Results_Newton_F1.NameMethod <<": X_final = " << Results_Newton_F1.x_final << ", F1(X_final) = " << Results_Newton_F1.fvalue[Results_Newton_F1.fvalue.size()-1] << std::endl;
+    //ResultMethod Results_ClassicChord_F1 = ClassicChord_F1.MethodFindRoot(F1);
+    //ResultMethod Results_Bisection_F1 = Bisection_F1.MethodFindRoot(F1);
+    //ResultMethod Results_Newton_F1 = Newton_F1.MethodFindRoot(F1);
+    ResultMethod Results_FixedPoint_F1 = FixedPoint_F1.MethodFindRoot(F1);
+    //std::cout << " F1: " << Results_ClassicChord_F1.NameMethod <<": X_final = " << Results_ClassicChord_F1.x_final << ", F1(X_final) = " << Results_ClassicChord_F1.fvalue[Results_ClassicChord_F1.fvalue.size()-1] << std::endl;
+    //std::cout << " F1: " << Results_Bisection_F1.NameMethod <<": X_final = " << Results_Bisection_F1.x_final << ", F1(X_final) = " << Results_Bisection_F1.fvalue[Results_Bisection_F1.fvalue.size()-1] << std::endl;
+    //std::cout << " F1: " << Results_Newton_F1.NameMethod <<": X_final = " << Results_Newton_F1.x_final << ", F1(X_final) = " << Results_Newton_F1.fvalue[Results_Newton_F1.fvalue.size()-1] << std::endl;
+    std::cout << " F1: " << Results_FixedPoint_F1.NameMethod <<": X_final = " << Results_FixedPoint_F1.x_final << ", F1(X_final) = " << Results_FixedPoint_F1.fvalue[Results_FixedPoint_F1.fvalue.size()-1] << std::endl;
 
 // Results of the methods for F2
-    ResultMethod Results_Newton_F2 = Newton_F2.MethodFindRoot(F2);
-    ResultMethod Results_Newton_Aitken_F2 = Newton_Aitken_F2.MethodFindRoot(F2);
-    std::cout << " F2: " << Results_Newton_F2.NameMethod <<": X_final = " << Results_Newton_F2.x_final << ", F2(X_final) = " << Results_Newton_F2.fvalue[Results_Newton_F2.fvalue.size()-1] << std::endl;
-    std::cout << " F2: " << Results_Newton_Aitken_F2.NameMethod <<": X_final = " << Results_Newton_Aitken_F2.x_final << ", F2(X_final) = " << Results_Newton_Aitken_F2.fvalue[Results_Newton_Aitken_F2.fvalue.size()-1] << std::endl;
+    //ResultMethod Results_Newton_F2 = Newton_F2.MethodFindRoot(F2);
+    //ResultMethod Results_Newton_Aitken_F2 = Newton_Aitken_F2.MethodFindRoot(F2);
+    //std::cout << " F2: " << Results_Newton_F2.NameMethod <<": X_final = " << Results_Newton_F2.x_final << ", F2(X_final) = " << Results_Newton_F2.fvalue[Results_Newton_F2.fvalue.size()-1] << std::endl;
+    //std::cout << " F2: " << Results_Newton_Aitken_F2.NameMethod <<": X_final = " << Results_Newton_Aitken_F2.x_final << ", F2(X_final) = " << Results_Newton_Aitken_F2.fvalue[Results_Newton_Aitken_F2.fvalue.size()-1] << std::endl;
     return EXIT_FAILURE;
 }
