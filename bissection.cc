@@ -9,6 +9,7 @@ Bissection::Bissection(std::pair<double,double> inter_init, const double tol, co
 std::string Bissection::getName(){
     return "Bisection";
 }
+/* -------------------------------------------------------------------------- */
 
 ResultMethod Bissection::MethodFindRoot(Function &F){
 

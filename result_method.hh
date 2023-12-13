@@ -4,7 +4,7 @@
 /* -------------------------------------------------------------------------- */
 
 /**
-  * Documentation TODO
+  * Class to stock the results of a method to find a root for a function F;
   */
 #include <iostream>
 #include <vector>
@@ -20,11 +20,8 @@ class ResultMethod{
 
 public:
 
-  // Constructor:
+  /// Constructor:
   ResultMethod(std::string Name_method, Eigen::Matrix<double,-1,1> x, std::vector<Eigen::VectorXd> Value_f_by_iteration);
-  //! Documentation TODO
-  //gnuplot GraphConvergence();
-
 
   /* ------------------------------------------------------------------------ */
   /* Members                                                                  */
@@ -32,11 +29,11 @@ public:
 
 public:
 
-  //! Name of the method used to get the results
+  /// Name of the method used to get the results
   std::string NameMethod;
-  //! The value of x at the end of the iterations
+  /// The value of x at the end of the iterations
   Eigen::Matrix<double,-1,1> x_final;
-  //! The value of the function during the iterations
+  /// The value of the function during the iterations
   std::vector<Eigen::VectorXd> fvalue;
 
 };

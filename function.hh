@@ -18,13 +18,17 @@ class Function{
   /* ------------------------------------------------------------------------ */
 
 public:
-  // Constructor:
+  /// Constructor:
   Function(int dim_F, int dim_X);
-  //! Pure virtual function to evaluate the function in x.
+  /// Pure virtual function to evaluate the function in x.
   virtual Eigen::VectorXd Func(Eigen::VectorXd X)=0;
-  //! Pure virtual function to evaluate the derivative of the function in x.
+  /// Pure virtual function to evaluate the derivative of the function in x.
   virtual Eigen::Matrix<double, -1, -1> DerivedFunc(Eigen::VectorXd X)=0;
-  //!
+  /**
+   * Pure virtual function to evaluate the fixed_point function x.
+   * The fixed_point function for a function F is a function G s.t.
+   * F(x) = 0 implies G(x)=x.
+   */
   virtual Eigen::VectorXd FuncFixedPoint(Eigen::VectorXd X)=0;
 
 

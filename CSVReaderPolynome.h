@@ -5,6 +5,11 @@
 #include <string>
 using namespace std;
 
+/**
+  * Class to obtain a polynomial function (Polynomial1ToN) from a CSV-files
+  * which contains the coefficients.
+  */
+
 class CSVReaderPolynome{
 
     /* ------------------------------------------------------------------------ */
@@ -12,6 +17,7 @@ class CSVReaderPolynome{
     /* ------------------------------------------------------------------------ */
 
 public:
+    /// Methode to gat the function from a CSV-file
     Polynomial1ToN Read(const std::string& NameFile);
 };
 
