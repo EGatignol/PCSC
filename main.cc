@@ -12,13 +12,16 @@
 // File for Result_method class
 #include "result_method.hh"
 #include "PlotConvergence.h"
+// File for Reader class
+#include "CSVReaderPolynome.h"
 
 int main(int argc, char ** argv){
-
+CSVReaderPolynome CSVRead;
+Polynomial1ToN F1 = CSVRead.Read("Coeff_F1.csv");
 // Define some functions
     // first example (R to R): F1(x) = x²-1
-    std::vector<vector<double>> coeffs_F1 = {{-1, 7, 1}};
-    Polynomial1ToN F1(coeffs_F1, 1, 1);
+    //std::vector<vector<double>> coeffs_F1 = {{-1, 7, 1}};
+    //Polynomial1ToN F1(coeffs_F1, 1, 1);
     // second example (R to R²): F2(x): f1(x)=3x³+2, f2(x)=x⁴-(1/2)x²
     std::vector<vector<double>> coeffs_F2 = {{2, 0, 0, 3},{0,0,-0.5,0,1}};
     Polynomial1ToN F2(coeffs_F2, 2, 1);
