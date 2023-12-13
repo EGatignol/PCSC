@@ -16,6 +16,7 @@ set(SOURCES
         bissection.cc
         PlotConvergence.cpp
         CSVReaderPolynome.cpp
+        test.cpp
 )
 
 set(GIT_EXECUTABLE "git")
