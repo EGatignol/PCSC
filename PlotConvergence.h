@@ -9,15 +9,15 @@
   * Documentation TODO
   */
 
-class PlotConvergence: public ResultMethod{
+class PlotConvergence{
 
     /* ------------------------------------------------------------------------ */
     /* Methods                                                                  */
     /* ------------------------------------------------------------------------ */
 
-private:
+public:
     //! Documentation TODO
-    void getGraphConv();
+    void getGraphConv(ResultMethod &r);
 };
 
 /* -------------------------------------------------------------------------- */
