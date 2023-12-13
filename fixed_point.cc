@@ -3,6 +3,14 @@
 
 Eigen::VectorXd FixedPoint::NextX(Function &f, Eigen::VectorXd previousX){
     Eigen::VectorXd nextX=previousX;
+    try{
+        if(f.dimX!=f.dimF){
+            throw std::invalid_argument("To use the methode fixedpoint, dimX need to be equal to dimF.");
+        }
+    }catch (const std::invalid_argument& e){
+        std::cerr << e.what() <<std::endl;
+        return nextX;
+    }
     try {
         nextX=f.FuncFixedPoint(previousX);
     }catch (const std::invalid_argument& e){
