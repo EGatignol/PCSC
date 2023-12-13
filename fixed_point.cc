@@ -64,7 +64,6 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
         else
         {
             newX = NextX(f, actualX);
-            std::cout<<"test"<<std::endl;
         }
         // check if the iterative process improves the quality of the solution.
         // in some cases, for example when the denominator is too small, and so the division is not feasible,
