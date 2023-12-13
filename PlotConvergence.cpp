@@ -11,6 +11,10 @@ void PlotConvergence::getGraphConv(ResultMethod &r){
     }
 
     Gnuplot gp;
-    gp << "plot '-' with linespoints title 'Convergence of the method'\n";
+    gp << "set xlabel 'number of iterations' font ',5'\n";
+    gp << "set ylabel 'norm of the evaluate function' font ',5'\n";
+    gp << "set tics font ',3'\n";
+    gp << "set key font ',3'\n";
+    gp << "plot '-' with linespoints title '"<< r.NameMethod<<"'\n";
     gp.send1d(vnorm);
 }
