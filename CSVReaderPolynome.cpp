@@ -11,6 +11,7 @@ Polynomial1ToN CSVReaderPolynome::Read(const std::string& NameFile){
     std::vector<std::vector<double>> coeff;
 
     std::string line;
+    int dimF = 0;
     while (std::getline(read_file, line)) {
         std::istringstream ss(line);
         std::vector<double> lineFunc;
@@ -21,6 +22,9 @@ Polynomial1ToN CSVReaderPolynome::Read(const std::string& NameFile){
         }
 
         coeff.push_back(lineFunc);
+        ++dimF;
     }
     read_file.close();
+    Polynomial1ToN F(coeff, dimF, 1);
+    return F;
 }
