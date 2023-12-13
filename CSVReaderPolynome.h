@@ -12,7 +12,7 @@ class CSVReaderPolynome{
     /* ------------------------------------------------------------------------ */
 
 public:
-    Polynomial1ToN Read(const std::string& uri);
+    Polynomial1ToN Read(const std::string& NameFile);
 };
 
 #endif //GENERATEDFROMCODEGENERATOR_CSVREADERPOLYNOME_H
