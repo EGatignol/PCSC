@@ -1,11 +1,11 @@
 #include "PlotConvergence.h"
 #include "gnuplot-iostream.h"
 
-void PlotConvergence::getGraphConv(){
+void PlotConvergence::getGraphConv(ResultMethod &r){
     std::vector <double> vnorm;
-    vnorm.reserve(fvalue.size());
+    vnorm.reserve(r.fvalue.size());
 
-    for (const auto& v : fvalue){
+    for (const auto& v : r.fvalue){
         double norm = v.norm();
         vnorm.push_back(norm);
     }

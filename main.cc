@@ -11,6 +11,7 @@
 #include "newton.hh"
 // File for Result_method class
 #include "result_method.hh"
+#include "PlotConvergence.h"
 
 int main(int argc, char ** argv){
 
@@ -54,6 +55,9 @@ int main(int argc, char ** argv){
     //ResultMethod Results_Bisection_F1 = Bisection_F1.MethodFindRoot(F1);
     //ResultMethod Results_Newton_F1 = Newton_F1.MethodFindRoot(F1);
     ResultMethod Results_FixedPoint_F1 = FixedPoint_F1.MethodFindRoot(F1);
+    PlotConvergence plot;
+    plot.getGraphConv(Results_FixedPoint_F1);
+
     //std::cout << " F1: " << Results_ClassicChord_F1.NameMethod <<": X_final = " << Results_ClassicChord_F1.x_final << ", F1(X_final) = " << Results_ClassicChord_F1.fvalue[Results_ClassicChord_F1.fvalue.size()-1] << std::endl;
     //std::cout << " F1: " << Results_Bisection_F1.NameMethod <<": X_final = " << Results_Bisection_F1.x_final << ", F1(X_final) = " << Results_Bisection_F1.fvalue[Results_Bisection_F1.fvalue.size()-1] << std::endl;
     //std::cout << " F1: " << Results_Newton_F1.NameMethod <<": X_final = " << Results_Newton_F1.x_final << ", F1(X_final) = " << Results_Newton_F1.fvalue[Results_Newton_F1.fvalue.size()-1] << std::endl;
@@ -65,4 +69,5 @@ int main(int argc, char ** argv){
     //std::cout << " F2: " << Results_Newton_F2.NameMethod <<": X_final = " << Results_Newton_F2.x_final << ", F2(X_final) = " << Results_Newton_F2.fvalue[Results_Newton_F2.fvalue.size()-1] << std::endl;
     //std::cout << " F2: " << Results_Newton_Aitken_F2.NameMethod <<": X_final = " << Results_Newton_Aitken_F2.x_final << ", F2(X_final) = " << Results_Newton_Aitken_F2.fvalue[Results_Newton_Aitken_F2.fvalue.size()-1] << std::endl;
     return EXIT_FAILURE;
+
 }
