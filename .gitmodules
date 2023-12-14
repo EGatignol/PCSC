@@ -2,3 +2,7 @@
 	path = gnuplot-iostream
 	url = https://github.com/dstahlke/gnuplot-iostream
 	branch = master
+[submodule "googletest"]
+	path = googletest
+	url = https://github.com/google/googletest
+	branch = master
