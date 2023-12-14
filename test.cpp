@@ -25,7 +25,6 @@ std::pair<double, double> Inter_init_F1(0.2, 13.1);
 
 Eigen::VectorXd X_initial_F2(1);
 
-// Tests
 TEST(Newton, valueNearZero) {
     X_initial_F1 << 3;
     X_previous_F1 << 6;
@@ -97,4 +96,31 @@ TEST(ClassicChordTestConv, valueNearZero) {
 
     ASSERT_NEAR(final_approx_Classic_Chord_F1, 0.0, 1e-10);
     ASSERT_NEAR(final_approx_Classic_Chord_F1_Aitken, 0.0, 1e-10);
+}
+
+TEST(DimensionMethodFindRoot, throwsException) {
+    X_initial_F1 << 3;
+
+    FixedPoint Fixed_Point_F1(X_initial_F1, false, 10e-10, 100);
+    ResultMethod Results_Fixed_Point_F1 = Fixed_Point_F1.MethodFindRoot(F2);
+
+    ASSERT_THROW(Fixed_Point_F1.MethodFindRoot(F2), std::invalid_argument);
+}
+
+TEST(DimensionClassicChord, throwsException) {
+    X_previous_F1 << 6;
+    X_initial_F1 << 3;
+    X_initial_F2 << -8.3;
+
+    ClassicChord Classic_Chord_F1(X_previous_F1, X_initial_F1, false, 10e-10, 100);
+
+    ASSERT_THROW(Classic_Chord_F1.NextX(F2,X_initial_F1), std::invalid_argument);
+}
+
+TEST(DimensionNewton, throwsException) {
+    X_initial_F1 << 3;
+
+    Newton Newton_F1(X_initial_F1, false, 10e-10, 100);
+
+    ASSERT_THROW(Newton_F1.NextX(F2,X_initial_F1), std::invalid_argument);
 }
