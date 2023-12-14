@@ -1,5 +1,6 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.5)
 project(GeneratedFromCodeGenerator)
+
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -60,3 +61,11 @@ target_link_libraries(test PRIVATE
         gtest
         pthread
 )
+
+set(DOXYGEN_EXECUTABLE doxygen)
+set(DOXYFILE Doxyfile)
+add_custom_target(doc_doxygen ALL
+        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/${DOXYFILE}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM )
