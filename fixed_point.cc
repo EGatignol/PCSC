@@ -2,16 +2,20 @@
 /* -------------------------------------------------------------------------- */
 
 Eigen::VectorXd FixedPoint::NextX(Function &f, Eigen::VectorXd previousX){
+
     Eigen::VectorXd nextX=previousX;
+
     try{
         if(f.dimX!=f.dimF){
-            throw std::invalid_argument("To use the methode fixedpoint, dimX need to be equal to dimF.");
+            //throw error if the dimensions are not suitable
+            throw std::invalid_argument("To use the fixedpoint method, dimension of input need to be equal to the function dimension.");
         }
     }catch (const std::invalid_argument& e){
         std::cerr << e.what() <<std::endl;
         return nextX;
     }
     try {
+        //check if a function for fixed point exists
         nextX=f.FuncFixedPoint(previousX);
     }catch (const std::invalid_argument& e){
         std::cerr << e.what() << std::endl;
@@ -37,7 +41,7 @@ std::string FixedPoint::getName(){
 /* --------------------------------------------------------------------------- */
 
 ResultMethod FixedPoint::MethodFindRoot(Function &f){
-
+    //check if dimensions are suitable between the function and the size of input x
     if (f.dimX!=x_initial.size()){
         throw std::invalid_argument("x initial and function don't have the same dimension");
     }
@@ -50,13 +54,13 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
     std::vector<Eigen::VectorXd> feval; // vector containing the evaluation of the function at each step
     feval.reserve(MaxIter); //reserve space for it
 
-
+    // creates variables of evaluation in prevision of residue computation
     auto actualfeval=f.Func(actualX);
     auto previousfeval=f.Func(actualX);
 
     feval.push_back(actualfeval);
 
-    auto residu = 2*tolerance; // set initial residu in order to satisfy while condition
+    auto residu = 2*tolerance; // set initial residue in order to satisfy the first while condition
     auto newX = actualX;
 
     // iterative process : 2 conditions to satisfy
@@ -75,7 +79,7 @@ ResultMethod FixedPoint::MethodFindRoot(Function &f){
         }
         // check if the iterative process improves the quality of the solution.
         // in some cases, for example when the denominator is too small, and so the division is not feasible,
-        // NextX return the lastX. The loop is left in this case.
+        // NextX return the lastX (arbitrary choice). The loop is left in this case.
         if (newX == lastX)
         {
             break;
@@ -113,7 +117,7 @@ Eigen::VectorXd FixedPoint::Aitken(Function &f, Eigen::VectorXd previousX)
     // Apply Aitken method :
     while ((residu>tolerance) && (iter<10))
     {
-        // computation of 2 consecutive step
+        // computation of 2 consecutive steps
         auto x1 = NextX(f, currentX);
         auto x2 = NextX(f,x1);
 
@@ -132,7 +136,7 @@ Eigen::VectorXd FixedPoint::Aitken(Function &f, Eigen::VectorXd previousX)
                 newX = indexComponent.select(x2-((x2-x1).cwiseAbs2()).cwiseQuotient(denominator),currentX);
             } else {
                 // throw an error if all the component are lower than epsilon
-                throw std::runtime_error("denominator is too small");
+                throw std::runtime_error("denominator is too small, early stop of the iteration method");
             }
         } catch (const std::runtime_error& e) {
 
@@ -142,7 +146,7 @@ Eigen::VectorXd FixedPoint::Aitken(Function &f, Eigen::VectorXd previousX)
             std::cerr << e.what() << std::endl;
             return currentX;
         }
-        // update of residu and number of iteration
+        // update of residue and number of iteration
         iter++;
         residu=(f.Func(currentX)-f.Func(newX)).norm();
     }

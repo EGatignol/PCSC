@@ -8,7 +8,8 @@
 #include <Eigen/Lu>
 using namespace Eigen;
 
-/** \brief FindRoot is the base class for all methods used to calculate the root of a function
+/** \brief FindRoot is the base class for all methods used to calculate the root of a function.
+ * FindRoot is an abstract class that contains.
   */
 
 class FindRoot{
@@ -30,7 +31,7 @@ public:
 
 protected:
 
-  //! Give access to the name of the method used. is pure virtual in this class and is defined for each iterative method.
+  //! Give access to the name of the method used. Is pure virtual in the base class.
   virtual std::string getName()=0;
 
   /* ------------------------------------------------------------------------ */
@@ -43,7 +44,7 @@ protected:
   int MaxIter;
   //! Accepted error to the root approximation
   double tolerance;
-  //! Minimum value for the denominator
+  //! Minimum value for the denominator, used in assertions
   const double epsilon = 10e-16;
 
 };

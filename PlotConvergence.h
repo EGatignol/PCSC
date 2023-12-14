@@ -5,8 +5,7 @@
 
 #include "result_method.hh"
 
-/**
-  * Documentation TODO
+/** \brief Class used to visualize the possible convergence
   */
 
 class PlotConvergence{
@@ -16,7 +15,7 @@ class PlotConvergence{
     /* ------------------------------------------------------------------------ */
 
 public:
-    //! Documentation TODO
+    //! plot the function evaluation at each step of the iteration method
     void getGraphConv(ResultMethod &r);
 };
 

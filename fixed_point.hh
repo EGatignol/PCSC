@@ -4,7 +4,8 @@
 /* -------------------------------------------------------------------------- */
 #include "find_root.hh"
 
-/** \brief FixedPoint is derived from FindRoot (public). This class covers the general fixed-point methods. Daughter classes will be derived from this class to manage special fixed-point cases.
+/** \brief FixedPoint is derived from FindRoot (public). This class covers the general fixed-point methods.
+ * Daughter classes will be derived from this class to manage special fixed-point cases.
   */
 
 class FixedPoint: public FindRoot{
@@ -26,8 +27,8 @@ public:
    */
   virtual Eigen::VectorXd NextX(Function &f, Eigen::VectorXd previousX);
   //! Comes from the base class and is overridden to be suitable for the fixed point case.
-  ResultMethod MethodFindRoot(Function &f);
-  //! Performs Aitken between each fixed-point stage.
+  ResultMethod MethodFindRoot(Function &f) override ;
+  //! Performs Aitken in addition to the fixed-point iteration.
   Eigen::VectorXd Aitken(Function &f, Eigen::VectorXd previousX);
 
 
