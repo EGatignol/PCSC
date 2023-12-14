@@ -3,6 +3,7 @@ project(GeneratedFromCodeGenerator)
 
 set(CMAKE_CXX_STANDARD 20)
 
+# Source files
 set(SOURCES
         main.cc
         result_method.cc
@@ -14,11 +15,12 @@ set(SOURCES
         newton.cc
         classic_chord.cc
         bissection.cc
-        PlotConvergence.cpp
         CSVReaderPolynome.cpp
+        PlotConvergence.cpp
         test.cpp
 )
 
+# Submodule update
 set(GIT_EXECUTABLE "git")
 option(GIT_SUBMODULE "Check submodules during build" ON)
 if(GIT_SUBMODULE)
@@ -29,28 +31,32 @@ if(GIT_SUBMODULE)
     endif()
 endif()
 
+# Find Boost
 find_package(Boost REQUIRED COMPONENTS
         iostreams system filesystem
 )
 
-
+# Include directories
 include_directories(eigen-master)
 include_directories(gnuplot-iostream)
 
+# Executable for main
 add_executable(main ${SOURCES})
-
-add_executable(PlotConvergence PlotConvergence.cpp)
-
-target_compile_features(PlotConvergence PRIVATE cxx_std_17)
-
-target_link_libraries(PlotConvergence PRIVATE
-        Boost::iostreams
-        Boost::system
-        Boost::filesystem
-)
 
 target_link_libraries(main PRIVATE
         Boost::iostreams
         Boost::system
         Boost::filesystem
+)
+
+# Executable for test
+add_executable(test ${SOURCES})
+add_subdirectory(googletest)
+target_link_libraries(test PRIVATE
+        Boost::iostreams
+        Boost::system
+        Boost::filesystem
+        gtest_main
+        gtest
+        pthread
 )
