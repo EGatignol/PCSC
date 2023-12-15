@@ -13,7 +13,7 @@ Conditions of use for each method :
 
 The bissection and classic chord methods only consider scalar nonlinear problem.\
 Newton can be applied to all kinds of non-linear equations regardless of input and output dimensions.\
-Fixed-Point can be applied when the input and output dimensions of the function are equal.\
+Fixed-Point can be applied when the input and output dimensions of the function are equal.
 
 ## Compile the project
 
