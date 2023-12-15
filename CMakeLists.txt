@@ -53,7 +53,6 @@ set(SOURCES_TEST
         result_method.cc
         function.cc
         polynomial_1_to_n.cc
-        m_to_n.cc
         find_root.cc
         fixed_point.cc
         newton.cc
