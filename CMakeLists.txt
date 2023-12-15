@@ -18,7 +18,6 @@ set(SOURCES
         bissection.cc
         CSVReaderPolynome.cpp
         PlotConvergence.cpp
-        test.cpp
 )
 
 # Submodule update
@@ -51,7 +50,19 @@ target_link_libraries(main PRIVATE
 )
 
 # Executable for test
-add_executable(test ${SOURCES})
+set(SOURCES_TEST
+        result_method.cc
+        function.cc
+        polynomial_1_to_n.cc
+        m_to_n.cc
+        find_root.cc
+        fixed_point.cc
+        newton.cc
+        classic_chord.cc
+        bissection.cc
+        test.cpp
+)
+add_executable(test ${SOURCES_TEST})
 add_subdirectory(googletest)
 target_link_libraries(test PRIVATE
         Boost::iostreams
