@@ -4,7 +4,7 @@ project(GeneratedFromCodeGenerator)
 
 set(CMAKE_CXX_STANDARD 20)
 
-# Source files
+# Source files for main
 set(SOURCES
         main.cc
         result_method.cc
@@ -48,7 +48,7 @@ target_link_libraries(main PRIVATE
         Boost::filesystem
 )
 
-# Executable for test
+# Source files for test
 set(SOURCES_TEST
         result_method.cc
         function.cc
@@ -60,6 +60,7 @@ set(SOURCES_TEST
         bissection.cc
         test.cpp
 )
+# Add subdirectory for google test
 add_executable(test ${SOURCES_TEST})
 add_subdirectory(googletest)
 target_link_libraries(test PRIVATE
@@ -71,6 +72,7 @@ target_link_libraries(test PRIVATE
         pthread
 )
 
+# Set doxygen
 set(DOXYGEN_EXECUTABLE doxygen)
 set(DOXYFILE Doxyfile)
 add_custom_target(doc_doxygen ALL
