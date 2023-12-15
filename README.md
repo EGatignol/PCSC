@@ -67,7 +67,7 @@ The tests carried out concern the correct initialization of the methods (respect
 
 ## Documentation
 
-It is possible to generate a documentation of the project using doxygen, with the following command :
+It is possible to generate a documentation of the project using doxygen, with the following command in the terminal :
 
 <p align="center">
   doxygen Doxygen
@@ -77,12 +77,12 @@ It is possible to generate a documentation of the project using doxygen, with th
 
 ### Improvements in organization
 
-We use three different library that we need to add into the project: Eigen, googletest and gnuplot.
+We use three different libraries that we need to add into the project: Eigen, googletest and gnuplot.
   - The library Eigen is directly in the github. The disadvantage is that the file is very heavy.
   - Googletest need to be clone outside of github by the user (as explain in test). So that is not optimal.
   - The library Gnuplot is a submodle in github. So we can directly obtain it from github without the file being too large in github.
 
-So to improve the organization, A and B would also have to be submodules.
+So to improve the organization, Eigen and Googletest would also have to be submodules.
 
 ### Improvements in application options
 For the moment, the code focuses on solving systems of polynomial functions. This considerably limits the possible applications of our code. To extend the code, it is possible to add a daughter class to the existing "Function" class. If this new class follows the same structure as our polynomial class (output type, evaluation of the function and its derivative/jacobian, a possible function for fixed-point), the use of our iterative methods will not be affected. To this aim, the use of parsers could be of interest.
