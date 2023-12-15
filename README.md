@@ -91,6 +91,12 @@ For the moment, the code focuses on solving systems of polynomial functions. Thi
 
 It should also be noted that most of our code has been created dynamically, to give us a degree of flexibility without having to extend a lot of templates. This could be an interesting area for reflection.
 
+## Sources
+
+- gnuplot documentation
+- eigen documentation
+- course support : Programming concepts in scientific computing
+
 ## Authors
 Enora Gatignol, Thibault Schiesser
 
