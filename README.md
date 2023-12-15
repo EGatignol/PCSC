@@ -34,7 +34,10 @@ Example of usage in the XXX.CSV:
 
 $$1&nbsp;&nbsp;2&nbsp;&nbsp;3$$
 
-$$0&nbsp;&nbsp;5&nbsp;&nbsp;0$$
+<pre>
+1  2  3
+0  5  0
+</pre>
 
 correspond to the system of equation :
 
