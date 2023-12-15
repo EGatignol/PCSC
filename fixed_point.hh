@@ -6,7 +6,8 @@
 
 /** \brief FixedPoint is derived from FindRoot (public). This class covers the general fixed-point methods.
  * Daughter classes will be derived from this class to manage special fixed-point cases.
-  */
+ * Valid for function from R^M to R^M.
+ */
 
 class FixedPoint: public FindRoot{
 
