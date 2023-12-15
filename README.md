@@ -40,8 +40,8 @@ Example of usage in the XXX.CSV:
 correspond to the system of equation :
 
 <pre>
-$$1+2x+3x^2$$
-$$0+5x+0x^2$$
+1+2x+3x^2
+0+5x+0x^2
 </pre>
 
 ## Perspectives
