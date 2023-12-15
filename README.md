@@ -35,14 +35,14 @@ Here are the stages of the program:
 
 Concerning the format of the Coeff_F1.csv, each line correspond to the output dimension (if one line the output is in $R^1$, two lines output in $R^2$,...). The column corresponds to the coefficient of the polynome.
 
-Example of usage in the Coeff_F1.csv:
+Example of usage in the Coeff_F1.csv (pay attention to add 0 until the largest degree of the complete system):
 
 <pre>
 1  2  3
 0  5  0
 </pre>
 
-correspond to the system of equation :
+which correspond to the system of equation :
 
 $$
 \begin{align*}
