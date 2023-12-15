@@ -47,9 +47,9 @@ $$
 $$
 ## Test
 Several tests were carried out using google test. To reproduce these and/or add new ones, you first need to clone the github google test in the project location using the command :
-\begin{align*}
-git clone git@github.com:google/googletest.git
-\end{align*}
+<p align="center">
+  git clone git@github.com:google/googletest.git
+</p>
 The tests carried out concern the correct initialization of the methods (respect of dimensions) and the verification of the convergence of the methods for simple cases.
 ## Perspectives
 ### Organization
