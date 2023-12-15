@@ -32,7 +32,7 @@ Concerning the format of the XXX.CSV, each line correspond to the output dimensi
 
 Example of usage in the XXX.CSV:
 
-$$1 2 3$$
+$$1&2&3$$
 
 $$0 5 0$$
 
