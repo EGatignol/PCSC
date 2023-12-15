@@ -55,9 +55,11 @@ Several tests were carried out using google test. To reproduce these and/or add 
   git clone git@github.com:google/googletest.git
 </p>
 Then you can compile with this command :
+
 <p align="center">
   g++ -Wall -c result_method.cc function.cc polynomial_1_to_n.cc find_root.cc fixed_point.cc newton.cc classic_chord.cc bissection.cc test.cpp
 </p>
+
 The tests carried out concern the correct initialization of the methods (respect of dimensions) and the verification of the convergence of the methods for simple cases.
 
 ## Perspectives
