@@ -56,6 +56,7 @@ Several tests were carried out using google test. To reproduce these and/or add 
 <p align="center">
   git clone git@github.com:google/googletest.git
 </p>
+
 Then you can compile the test by using :
 
 <p align="center">
@@ -63,6 +64,14 @@ Then you can compile the test by using :
 </p>
 
 The tests carried out concern the correct initialization of the methods (respect of dimensions) and the verification of the convergence of the methods for simple cases.
+
+## Documentation
+
+It is possible to generate a documentation of the project using doxygen, with the following command :
+
+<p align="center">
+  doxygen Doxygen
+</p>
 
 ## Perspectives
 
