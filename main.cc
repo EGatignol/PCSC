@@ -16,61 +16,102 @@
 #include "CSVReaderPolynome.h"
 
 int main(int argc, char ** argv){
-//CSVReaderPolynome CSVRead;
-//Polynomial1ToN F1 = CSVRead.Read("Coeff_F1.csv");
+CSVReaderPolynome CSVRead;
+Polynomial1ToN F1 = CSVRead.Read("Coeff_F1.csv");
+
+double tol=10e-10;
+int maxiteration=100;
+
+
 // Define some functions
-    // first example (R to R): F1(x) = x²-1
-    std::vector<vector<double>> coeffs_F1 = {{-1, 7, 1}};
-    Polynomial1ToN F1(coeffs_F1, 1, 1);
-    // second example (R to R²): F2(x): f1(x)=3x³+2, f2(x)=x⁴-(1/2)x²
-    std::vector<vector<double>> coeffs_F2 = {{2, 0, 0, 3},{0,0,-0.5,0,1}};
-    Polynomial1ToN F2(coeffs_F2, 2, 1);
 
-// Methods to find roots for F1
-    // x initial
-    Eigen::VectorXd X_initial_F1(1);
-    X_initial_F1 << 3;
-    // x previous for the ClassicChord
-    Eigen::VectorXd  X_previous_F1(1);
-    X_previous_F1 << 6;
-    // Interval initial for the bisection
-    std::pair<double,double> Inter_init_F1(0.2, 13.1);
-    // Classic chord with Aitken:
-    ClassicChord ClassicChord_F1(X_previous_F1,X_initial_F1, true, 10e-10,100);
-    // Bisection:
-    Bissection Bisection_F1( Inter_init_F1, 10e-10, 100);
-    // Newton without Aitken:
-    Newton Newton_F1(X_initial_F1, false, 10e-10,100);
-    //
-    FixedPoint FixedPoint_F1(X_initial_F1, false, 10e-10,100);
+    int methodNumber;
 
-// Methods to find roots for F2
-    // x initial
-    Eigen::VectorXd X_initial_F2(1);
-    X_initial_F2 << -8.3;
-    // Newton without Aitken:
-    Newton Newton_F2(X_initial_F2, false, 10e-10,100);
-    // Newton with Aitken:
-    Newton Newton_Aitken_F2(X_initial_F2, true, 10e-10,100);
+    std::cout << "Enter the number of the method that you want to use\n - 1 for Bissection\n - 2 for Fixed Point\n - 3 for Newton\n - 4 for Classic Chord\n Then press enter.\n";
+    std::cin >> methodNumber;
 
-// Results of the methods for F1
-    //ResultMethod Results_ClassicChord_F1 = ClassicChord_F1.MethodFindRoot(F1);
-    //ResultMethod Results_Bisection_F1 = Bisection_F1.MethodFindRoot(F1);
-    //ResultMethod Results_Newton_F1 = Newton_F1.MethodFindRoot(F1);
-    ResultMethod Results_FixedPoint_F1 = FixedPoint_F1.MethodFindRoot(F1);
-    PlotConvergence plot;
-    plot.getGraphConv(Results_FixedPoint_F1);
+    switch(methodNumber){
+        case 1: {
+            double lowbound;
+            double upbound;
+            std::cout << "Enter the lower bound of the interval\n Then press enter.\n";
+            std::cin >> lowbound;
+            std::cout << "Enter the lower bound of the interval\n Then press enter.\n";
+            std::cin >> upbound;
+            std::pair<double, double> Interv(lowbound, upbound);
+            Bissection BissectionM(Interv, tol, maxiteration);
+            ResultMethod Results = BissectionM.MethodFindRoot(F1);
+            PlotConvergence plotb;
+            plotb.getGraphConv(Results);
+            break;
+        }
+        case 2: {
+            int vectorsize;
+            std::cout << "Enter the size of the initial vector\n Then press enter. \n";
+            std::cin >> vectorsize;
+            Eigen::VectorXd Xin(vectorsize);
+            for (int i = 0; i < vectorsize; i++) {
+                std::cout << "enter the " << i + 1 << " component of the vector, then press enter\n";
+                std::cin >> Xin[i];
+            }
+            bool aitken;
+            std::cout
+                    << "In addition of the fixed point, enter true if you want to use Aitken, otherwise false.\n Then press enter\n";
+            std::cin >> aitken;
+            FixedPoint FixedPointM(Xin, aitken, tol, maxiteration);
+            ResultMethod Results_FixedPoint = FixedPointM.MethodFindRoot(F1);
+            PlotConvergence plot;
+            plot.getGraphConv(Results_FixedPoint);
+            break;
+        }
+        case 3:{
+            int vectorsize;
+            std::cout << "Enter the size of the initial vector\n Then press enter. \n";
+            std::cin >> vectorsize;
+            Eigen::VectorXd Xin(vectorsize);
+            for (int i = 0; i < vectorsize; i++) {
+                std::cout << "enter the " << i + 1 << " component of the vector, then press enter\n";
+                std::cin >> Xin[i];
+            }
+            bool aitken;
+            std::cout << "In addition of the newton, enter true if you want to use Aitken, otherwise false.\n Then press enter\n";
+            std::cin >> aitken;
+            Newton NewtonM(Xin, aitken, tol, maxiteration);
+            ResultMethod Results_Newton = NewtonM.MethodFindRoot(F1);
+            PlotConvergence plot;
+            plot.getGraphConv(Results_Newton);
+            break;
+        }
+            ;
+        case 4:{
+            int vectorsize;
+            std::cout << "Enter the size of the initial vector\n Then press enter. \n";
+            std::cin >> vectorsize;
+            Eigen::VectorXd Xin(vectorsize);
+            Eigen::VectorXd Xprev(vectorsize);
+            for (int i = 0; i < vectorsize; i++) {
+                std::cout << "enter the " << i + 1 << " component of the initial vector, then press enter\n";
+                std::cin >> Xin[i];
+            }
+            for (int i = 0; i < vectorsize; i++) {
+                std::cout << "enter the " << i + 1 << " component of the previous vector, then press enter\n";
+                std::cin >> Xprev[i];
+            }
+            bool aitken;
+            std::cout
+                    << "In addition of the classic chord, enter true if you want to use Aitken, otherwise false.\n Then press enter\n";
+            std::cin >> aitken;
+            Newton NewtonM(Xin, aitken, tol, maxiteration);
+            ResultMethod Results_Newton = NewtonM.MethodFindRoot(F1);
+            PlotConvergence plot;
+            plot.getGraphConv(Results_Newton);
+            break;
+        }
+        default:
+            std::cout << "Please enter a valid method\n";
+            break;
+    }
 
-    //std::cout << " F1: " << Results_ClassicChord_F1.NameMethod <<": X_final = " << Results_ClassicChord_F1.x_final << ", F1(X_final) = " << Results_ClassicChord_F1.fvalue[Results_ClassicChord_F1.fvalue.size()-1] << std::endl;
-    //std::cout << " F1: " << Results_Bisection_F1.NameMethod <<": X_final = " << Results_Bisection_F1.x_final << ", F1(X_final) = " << Results_Bisection_F1.fvalue[Results_Bisection_F1.fvalue.size()-1] << std::endl;
-    //std::cout << " F1: " << Results_Newton_F1.NameMethod <<": X_final = " << Results_Newton_F1.x_final << ", F1(X_final) = " << Results_Newton_F1.fvalue[Results_Newton_F1.fvalue.size()-1] << std::endl;
-    std::cout << " F1: " << Results_FixedPoint_F1.NameMethod <<": X_final = " << Results_FixedPoint_F1.x_final << ", F1(X_final) = " << Results_FixedPoint_F1.fvalue[Results_FixedPoint_F1.fvalue.size()-1] << std::endl;
-
-// Results of the methods for F2
-    //ResultMethod Results_Newton_F2 = Newton_F2.MethodFindRoot(F2);
-    //ResultMethod Results_Newton_Aitken_F2 = Newton_Aitken_F2.MethodFindRoot(F2);
-    //std::cout << " F2: " << Results_Newton_F2.NameMethod <<": X_final = " << Results_Newton_F2.x_final << ", F2(X_final) = " << Results_Newton_F2.fvalue[Results_Newton_F2.fvalue.size()-1] << std::endl;
-    //std::cout << " F2: " << Results_Newton_Aitken_F2.NameMethod <<": X_final = " << Results_Newton_Aitken_F2.x_final << ", F2(X_final) = " << Results_Newton_Aitken_F2.fvalue[Results_Newton_Aitken_F2.fvalue.size()-1] << std::endl;
     return EXIT_FAILURE;
 
 }
