@@ -65,9 +65,9 @@ The tests carried out concern the correct initialization of the methods (respect
 
 ## Perspectives
 
-### Organization
+### Improvements in organization
 parler de eigen, google test 
-### improvements in application options
+### Improvements in application options
 
 
 ## Authors
