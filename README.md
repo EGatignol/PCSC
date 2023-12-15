@@ -30,7 +30,7 @@ Here are the stages of the program:
 
 Concerning the format of the XXX.CSV, each line correspond to the output dimension (if one line the output is in R^1, two lines output in R^2,...). The column corresponds to the coefficient of the polynome.
 
-Example of usage :
+Example of usage in the XXX.CSV:
 
 $$1 2 3$$
 
