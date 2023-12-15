@@ -9,10 +9,10 @@ The aim of the project is to solve nonlinear equations. The methods considered a
   
 For fixed-point methods (general fixed point and its special cases, such as the classic chord and Newton), you can use an "Aitken" convergence accelerator. 
 
-Conditions of use for each method :--
-The bissection and classic chord methods only consider scalar nonlinear problem.--
-Newton can be applied to all kinds of non-linear equations regardless of input and output dimensions.--
-Fixed-Point can be applied when the input and output dimensions of the function are equal.--
+Conditions of use for each method :__
+The bissection and classic chord methods only consider scalar nonlinear problem.__
+Newton can be applied to all kinds of non-linear equations regardless of input and output dimensions.__
+Fixed-Point can be applied when the input and output dimensions of the function are equal.__
 
 ## Compile the project
 
