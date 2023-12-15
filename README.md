@@ -55,8 +55,7 @@ Several tests were carried out using google test. To reproduce these and/or add 
 <p align="center">
   git clone git@github.com:google/googletest.git
 </p>
-Then you can compile with this command :
-
+Then you can compile the test by using :
 
 <p align="center">
   g++ -Wall -c result_method.cc function.cc polynomial_1_to_n.cc find_root.cc fixed_point.cc newton.cc classic_chord.cc bissection.cc test.cpp
