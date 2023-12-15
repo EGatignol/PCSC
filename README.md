@@ -28,7 +28,7 @@ Here are the stages of the program:
 - the user must enter the needed parameter to initialize the method (follow the request on the terminal).
 - if the method is correctly initialized, the position and its evaluation is printed. A graph illustrates the possible convergence of method.
 
-Concerning the format of the XXX.CSV, each line correspond to the output dimension (if one line the output is in R^1, two lines output in R^2,...). The column corresponds to the coefficient of the polynome.
+Concerning the format of the XXX.CSV, each line correspond to the output dimension (if one line the output is in $R^1$, two lines output in $R^2$,...). The column corresponds to the coefficient of the polynome.
 
 Example of usage in the XXX.CSV:
 
