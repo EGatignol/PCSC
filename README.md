@@ -51,7 +51,9 @@ Several tests were carried out using google test. To reproduce these and/or add 
   git clone git@github.com:google/googletest.git
 </p>
 The tests carried out concern the correct initialization of the methods (respect of dimensions) and the verification of the convergence of the methods for simple cases.
+
 ## Perspectives
+
 ### Organization
 parler de eigen, google test 
 ### improvements in application options
