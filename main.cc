@@ -46,12 +46,14 @@ int main(int argc, char ** argv){
             std::cin >> upbound;
             std::pair<double, double> Interv(lowbound, upbound);
 
-            //construct bissection object and computation of the root
-            Bissection BissectionM(Interv, tol, maxiteration);
-            ResultMethod Results = BissectionM.MethodFindRoot(F1);
+            //construct bisection object and computation of the root
+            Bissection Bisection(Interv, tol, maxiteration);
+            ResultMethod Results_Bisection = Bisection.MethodFindRoot(F1);
 
-            PlotConvergence plotb;
-            plotb.getGraphConv(Results);
+            std::cout << Results_Bisection.NameMethod <<": X_final = " << Results_Bisection.x_final << ", F(X_final) = " << Results_Bisection.fvalue[Results_Bisection.fvalue.size()-1] << std::endl;
+
+            PlotConvergence plot;
+            plot.getGraphConv(Results_Bisection);
             break;
         }
         case 2: {
@@ -73,6 +75,8 @@ int main(int argc, char ** argv){
             //construct Fixedpoint object and computation of the root
             FixedPoint FixedPointM(Xin, aitken, tol, maxiteration);
             ResultMethod Results_FixedPoint = FixedPointM.MethodFindRoot(F1);
+
+            std::cout << Results_FixedPoint.NameMethod <<": X_final = " << Results_FixedPoint.x_final << ", F(X_final) = " << Results_FixedPoint.fvalue[Results_FixedPoint.fvalue.size()-1] << std::endl;
 
             PlotConvergence plot;
             plot.getGraphConv(Results_FixedPoint);
@@ -96,6 +100,8 @@ int main(int argc, char ** argv){
             //construct Newton object and computation of the root
             Newton NewtonM(Xin, aitken, tol, maxiteration);
             ResultMethod Results_Newton = NewtonM.MethodFindRoot(F1);
+
+            std::cout << Results_Newton.NameMethod <<": X_final = " << Results_Newton.x_final << ", F(X_final) = " << Results_Newton.fvalue[Results_Newton.fvalue.size()-1] << std::endl;
 
             PlotConvergence plot;
             plot.getGraphConv(Results_Newton);
@@ -124,10 +130,12 @@ int main(int argc, char ** argv){
 
             //construct ClassicChord object and computation of the root
             ClassicChord classicChordM(Xprev, Xin, aitken, tol, maxiteration);
-            ResultMethod Results_classicChordM = classicChordM.MethodFindRoot(F1);
+            ResultMethod Results_classicChord = classicChordM.MethodFindRoot(F1);
+
+            std::cout << Results_classicChord.NameMethod <<": X_final = " << Results_classicChord.x_final << ", F(X_final) = " << Results_classicChord.fvalue[Results_classicChord.fvalue.size()-1] << std::endl;
 
             PlotConvergence plot;
-            plot.getGraphConv(Results_classicChordM);
+            plot.getGraphConv(Results_classicChord);
             break;
         }
         default:
