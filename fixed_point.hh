@@ -30,7 +30,11 @@ public:
   ResultMethod MethodFindRoot(Function &f) override ;
   //! Performs Aitken in addition to the fixed-point iteration.
   Eigen::VectorXd Aitken(Function &f, Eigen::VectorXd previousX);
+  
+protected:
 
+    //! From the base class, give access to the name of the method
+    virtual std::string getName();
 
   /* ------------------------------------------------------------------------ */
   /* Members                                                                  */
@@ -42,8 +46,6 @@ protected:
   Eigen::VectorXd x_initial;
   //! Boolean that decides if Aitken is used
   bool UseAitken;
-  //! From the base class, give access to the name of the method
-  virtual std::string getName();
 
 
 };
