@@ -68,7 +68,7 @@ ResultMethod Bissection::MethodFindRoot(Function &F){
             a = m;
         }
         // Check that the length of the interval is greater than the tolerance.
-        if (abs(a[0]-b[0]) < tolerance){
+        if (abs(f_a[0]-f_b[0]) < 2*tolerance){
             ResultMethod Results(getName(), m, f_values);
             return Results;
         }

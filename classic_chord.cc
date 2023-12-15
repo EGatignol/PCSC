@@ -28,14 +28,8 @@ Eigen::VectorXd ClassicChord::NextX(Function &f, Eigen::VectorXd previousX) {
     auto previouspreviousX=getXprevious();
 
     // check the dimension of the input function
-    try {
-        if (f.dimX != 1 || f.dimF != 1) {
-            throw std::invalid_argument("Classic chord: dimension of input and function must be equal to 1.");
-        }
-    }catch (const std::invalid_argument& e) {
-        std::cerr << e.what() << std::endl;
-        // send previousX, this return allow us to break the while in MethodsFindRoot
-        return previousX;
+    if (f.dimX != 1 || f.dimF != 1) {
+        throw std::invalid_argument("Classic chord: dimension of input and function must be equal to 1.");
     }
 
     Eigen::VectorXd denominator = f.Func(previousX) - f.Func(previouspreviousX);

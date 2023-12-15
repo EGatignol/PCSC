@@ -23,14 +23,10 @@ Eigen::VectorXd Newton::NextX(Function &f, Eigen::VectorXd previousX){
 
     // Compute LU decomposition of the Jacobian Matrix
     auto facto = f.DerivedFunc(previousX).fullPivLu();
-    try{
-        // check the dimension before the linear system is solved
-        if (facto.rows()!= f.Func(previousX).size()) {
-            throw std::invalid_argument("Dimensional problem between position and jacobian matrix");
-        }
-    } catch (const std::invalid_argument& e) {
-        std::cerr << e.what() << std::endl;
-        return previousX;
+
+    // check the dimension before the linear system is solved
+    if (facto.rows()!= f.Func(previousX).size()) {
+        throw std::invalid_argument("Dimensional problem between position and jacobian matrix");
     }
 
     // Solve the linear system
