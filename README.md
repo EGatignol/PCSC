@@ -21,6 +21,7 @@ The command to compile :
 <p align="center">
   g++ -Wall -c main.cc result_method.cc function.cc polynomial_1_to_n.cc find_root.cc fixed_point.cc newton.cc classic_chord.cc bissection.cc CSVReaderPolynome.cpp PlotConvergence.cpp
 </p>
+
 ## Flow and usage
 
 In our case, we've decided to focus on systems of polynomial equations.
@@ -75,7 +76,8 @@ We use three different library that we need to add into the project: Eigen, goog
 So to improve the organization, A and B would also have to be submodules.
 
 ### Improvements in application options
-
+For the moment, the code focuses on solving systems of polynomial functions. This considerably limits the possible applications of our code. To extend the code, it is possible to add a daughter class to the existing "Function" class. If this new class follows the same structure as our polynomial class (output type, evaluation of the function and its derivative/jacobian), the use of our iterative methods will not be affected. To this aim, the use of parsers could be of interest.\
+It should also be noted that most of our code has been created dynamically, to give us a degree of flexibility without having to extend a lot of templates. This could be an interesting area for reflection.
 
 ## Authors
 Enora Gatignol, Thibault Schiesser
