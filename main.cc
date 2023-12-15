@@ -16,22 +16,28 @@
 #include "CSVReaderPolynome.h"
 
 int main(int argc, char ** argv){
-CSVReaderPolynome CSVRead;
-Polynomial1ToN F1 = CSVRead.Read("Coeff_F1.csv");
 
-double tol=10e-10;
-int maxiteration=100;
+    // get the polynome entered by the user from CSV file
+    CSVReaderPolynome CSVRead;
+    Polynomial1ToN F1 = CSVRead.Read("Coeff_F1.csv");
+
+    // set tolerance and maximal number of iterations
+    double tol=10e-10;
+    int maxiteration=100;
 
 
-// Define some functions
-
+    // ask the user to choose the method
     int methodNumber;
 
     std::cout << "Enter the number of the method that you want to use\n - 1 for Bissection\n - 2 for Fixed Point\n - 3 for Newton\n - 4 for Classic Chord\n Then press enter.\n";
     std::cin >> methodNumber;
 
+    // depending on the chosen method
+    // parameter associated must be entered by the user
+    // then the root is computed
     switch(methodNumber){
         case 1: {
+            // set lower bound and upperbound of the interval containing the expected root
             double lowbound;
             double upbound;
             std::cout << "Enter the lower bound of the interval\n Then press enter.\n";
@@ -39,13 +45,17 @@ int maxiteration=100;
             std::cout << "Enter the lower bound of the interval\n Then press enter.\n";
             std::cin >> upbound;
             std::pair<double, double> Interv(lowbound, upbound);
+
+            //construct bissection object and computation of the root
             Bissection BissectionM(Interv, tol, maxiteration);
             ResultMethod Results = BissectionM.MethodFindRoot(F1);
+
             PlotConvergence plotb;
             plotb.getGraphConv(Results);
             break;
         }
         case 2: {
+            // set the size and components of initial vector
             int vectorsize;
             std::cout << "Enter the size of the initial vector\n Then press enter. \n";
             std::cin >> vectorsize;
@@ -54,17 +64,22 @@ int maxiteration=100;
                 std::cout << "enter the " << i + 1 << " component of the vector, then press enter\n";
                 std::cin >> Xin[i];
             }
+            // set the use of aitken
             bool aitken;
             std::cout
                     << "In addition of the fixed point, enter true if you want to use Aitken, otherwise false.\n Then press enter\n";
             std::cin >> aitken;
+
+            //construct Fixedpoint object and computation of the root
             FixedPoint FixedPointM(Xin, aitken, tol, maxiteration);
             ResultMethod Results_FixedPoint = FixedPointM.MethodFindRoot(F1);
+
             PlotConvergence plot;
             plot.getGraphConv(Results_FixedPoint);
             break;
         }
         case 3:{
+            // set the size and components of initial vector
             int vectorsize;
             std::cout << "Enter the size of the initial vector\n Then press enter. \n";
             std::cin >> vectorsize;
@@ -73,17 +88,22 @@ int maxiteration=100;
                 std::cout << "enter the " << i + 1 << " component of the vector, then press enter\n";
                 std::cin >> Xin[i];
             }
+            // set the use of aitken
             bool aitken;
             std::cout << "In addition of the newton, enter true if you want to use Aitken, otherwise false.\n Then press enter\n";
             std::cin >> aitken;
+
+            //construct Newton object and computation of the root
             Newton NewtonM(Xin, aitken, tol, maxiteration);
             ResultMethod Results_Newton = NewtonM.MethodFindRoot(F1);
+
             PlotConvergence plot;
             plot.getGraphConv(Results_Newton);
             break;
         }
             ;
         case 4:{
+            // set the size and components of initial/previous vectors
             int vectorsize;
             std::cout << "Enter the size of the initial vector\n Then press enter. \n";
             std::cin >> vectorsize;
@@ -101,15 +121,18 @@ int maxiteration=100;
             std::cout
                     << "In addition of the classic chord, enter true if you want to use Aitken, otherwise false.\n Then press enter\n";
             std::cin >> aitken;
-            Newton NewtonM(Xin, aitken, tol, maxiteration);
-            ResultMethod Results_Newton = NewtonM.MethodFindRoot(F1);
+
+            //construct ClassicChord object and computation of the root
+            ClassicChord classicChordM(Xprev, Xin, aitken, tol, maxiteration);
+            ResultMethod Results_classicChordM = classicChordM.MethodFindRoot(F1);
+
             PlotConvergence plot;
-            plot.getGraphConv(Results_Newton);
+            plot.getGraphConv(Results_classicChordM);
             break;
         }
         default:
-            std::cout << "Please enter a valid method\n";
-            break;
+            // if a unknown method is chosen, ask to restart
+            std::cout << "Invalid method\nrerun the program with a valid method !\n ";
     }
 
     return EXIT_FAILURE;
