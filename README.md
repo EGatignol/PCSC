@@ -84,6 +84,8 @@ We use three different libraries that we need to add into the project: Eigen, go
 
 So to improve the organization, Eigen and Googletest would also have to be submodules.
 
+A .gitIgnore could also have been added to the project, so as to avoid any status errors on the github due to generated files (which don't have to be pushed). 
+
 ### Improvements in application options
 For the moment, the code focuses on solving systems of polynomial functions. This considerably limits the possible applications of our code. To extend the code, it is possible to add a daughter class to the existing "Function" class. If this new class follows the same structure as our polynomial class (output type, evaluation of the function and its derivative/jacobian, a possible function for fixed-point), the use of our iterative methods will not be affected. To this aim, the use of parsers could be of interest.
 
