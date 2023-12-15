@@ -66,7 +66,14 @@ The tests carried out concern the correct initialization of the methods (respect
 ## Perspectives
 
 ### Improvements in organization
-parler de eigen, google test 
+
+We use three different library that we need to add into the project: Eigen, googletest and gnuplot.
+  - The library Eigen is directly in the github. The disadvantage is that the file is very heavy.
+  - Googletest need to be clone outside of github by the user (as explain in test). So that is not optimal.
+  - The library Gnuplot is a submodle in github. So we can directly obtain it from github without the file being too large in github.
+
+So to improve the organization, A and B would also have to be submodules.
+
 ### Improvements in application options
 
 
