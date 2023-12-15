@@ -6,7 +6,6 @@
 
 Polynomial1ToN CSVReaderPolynome::Read(const std::string& NameFile){
     std::ifstream read_file(NameFile);
-    std::cout;
     assert(read_file.is_open());
 
     std::vector<std::vector<double>> coeff;
