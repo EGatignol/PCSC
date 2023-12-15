@@ -32,12 +32,14 @@ Concerning the format of the XXX.CSV, each line correspond to the output dimensi
 
 Example of usage :
 
-$$1 2 3$$\
+$$1 2 3$$
+
 $$0 5 0$$
 
 correspond to the system of equation :
 
-$$1 + 2x^2 + 3x^3$$\
+$$1 + 2x^2 + 3x^3$$
+
 $$0 + 5x^2 + 0x^3$$
 
 ## Perspectives
