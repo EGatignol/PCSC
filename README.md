@@ -32,12 +32,14 @@ Concerning the format of the XXX.CSV, each line correspond to the output dimensi
 
 Example of usage in the XXX.CSV:
 
-$$1&nbsp;&nbsp;2&nbsp;&nbsp;3$$
+<center>
 
 <pre>
 1  2  3
 0  5  0
 </pre>
+
+</center>
 
 correspond to the system of equation :
 
