@@ -51,6 +51,7 @@ $$
 $$
 ## Test
 Several tests were carried out using google test. To reproduce these and/or add new ones, you first need to clone the github google test in the project location using the command :
+
 <p align="center">
   git clone git@github.com:google/googletest.git
 </p>
